@@ -1,0 +1,22 @@
+<app-page-header></app-page-header>
+<nz-card [nzBordered]="false">
+  <div class="search__form">
+    <sf #sf [schema]="schema" (formSubmit)="submit($event)" [formData]="q" #sf [mode]="'search'">
+    </sf>
+  </div>
+  <button nz-button class="ml-sm" (click)="add()" [acl]="'standard:add'">{{'menu.operator.add'|translate}}</button>
+  <button nz-button class="ml-sm" (click)="remove()" [acl]="'standard:remove'">{{'menu.operator.delete'|translate}}</button>
+  <button nz-button (click)="st.export()">{{'menu.operator.export'|translate}}</button>
+  <div class="my-md">
+    <nz-alert [nzType]="'info'" [nzShowIcon]="true" [nzMessage]="message">
+      <ng-template #message>
+        {{'menu.operator.choose'|translate}}
+        <strong class="text-primary">{{selectedRows.length}}</strong> {{'menu.operator.item'|translate}}
+      </ng-template>
+    </nz-alert>
+  </div>
+  <st #st [widthMode]="{ type: 'strict' }" (change)="stChange($event)" [data]="listUrl" [req]="request"
+      [columns]="columns">
+
+  </st>
+</nz-card>
