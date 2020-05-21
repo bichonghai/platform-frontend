@@ -3,31 +3,33 @@ import { ListComponent } from '../../../common/component/list-component';
 import { StandardService } from '../../../../service/standard/standard.service';
 import { Router } from '@angular/router';
 import { ServicePathService } from '../../../../service/service-path.service';
-import { NzModalService } from 'ng-zorro-antd';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { ALAIN_I18N_TOKEN } from '@delon/theme';
 import { I18NService } from '@core';
+import { DeviceRecordService } from '../../../../service/device-record/device-record.service';
 
 @Component({
-  selector: 'app-standard-list',
-  templateUrl: './standard-list.component.html',
-  styles: [],
+  selector: 'app-device-record-list',
+  templateUrl: './device-record-list.component.html',
+  styles: [
+  ]
 })
-export class StandardListComponent extends ListComponent implements OnInit {
+export class DeviceRecordListComponent extends ListComponent implements OnInit {
   schema = {
     properties: {
-      name: { type: 'string', maxLength: 50, ui: { i18n: 'standard.name' } },
-      code: { type: 'string', maxLength: 50, ui: { i18n: 'standard.code' } },
+      name: { type: 'string', maxLength: 50, ui: { i18n: 'deviceRecord.name' } },
+      code: { type: 'string', maxLength: 50, ui: { i18n: 'deviceRecord.code' } },
     },
     ui: {
       spanLabel: 8,
     },
   };
 
-  constructor(public standardService: StandardService, public router: Router, private servicePathService: ServicePathService,
+  constructor(public deviceRecordService: DeviceRecordService, public router: Router, private servicePathService: ServicePathService,
               public cdr: ChangeDetectorRef, public modal: NzModalService, @Inject(ALAIN_I18N_TOKEN) private i18NService: I18NService) {
-    super(servicePathService.standard, standardService, modal, cdr, router);
-    for (const entry of standardService.listPropertys) {
-      this.columns.push({ title: { i18n: 'standard.' + entry }, index: entry });
+    super(servicePathService.deviceRecord, deviceRecordService, modal, cdr, router);
+    for (const entry of deviceRecordService.listPropertys) {
+      this.columns.push({ title: { i18n: 'deviceRecord.' + entry }, index: entry });
     }
     this.columns.push(
       {
@@ -39,7 +41,7 @@ export class StandardListComponent extends ListComponent implements OnInit {
           },
           {
             i18n: 'menu.operator.edit',
-            acl: ['standard:edit'],
+            acl: ['deviceRecord:edit'],
             click: (item: any) => this.edit(item),
           },
         ]

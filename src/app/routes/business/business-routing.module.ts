@@ -12,6 +12,11 @@ const routes: Routes = [
     canActivate: [],
     loadChildren: () => import('./standard/standard.module').then(m => m.StandardModule)
   },
+  {
+    path: 'device-record',
+    canActivate: [],
+    loadChildren: () => import('./device-record/device-record.module').then(m => m.DeviceRecordModule)
+  },
 ];
 
 @NgModule({

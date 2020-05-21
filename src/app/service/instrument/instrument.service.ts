@@ -4,13 +4,14 @@ import { ServicePathService } from '../service-path.service';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class InstrumentService extends  CommonService{
+export class InstrumentService extends CommonService {
 
   constructor(protected servicePathService: ServicePathService, protected httpClient: HttpClient) {
     super(servicePathService.instrument, httpClient);
   }
-  detailPropertys = new Set(["type","name","code","state","description"]);
-  listPropertys = new Set(["type","name","code","state","description"]);
+
+  detailPropertys = new Set(['type', 'name', 'code', 'state', 'description']);
+  listPropertys = new Set(['type', 'name', 'code', 'state', 'description']);
 }

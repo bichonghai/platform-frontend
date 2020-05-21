@@ -57,9 +57,9 @@ export class RoleEditComponent extends EditComponent implements OnInit {
     });
     nzTreeNode = this.conductCheck(nzTreeNode);
 
-    let permissionToDb = [];
+    const permissionToDb = [];
     this.treeToModel(nzTreeNode, permissionToDb);
-    event['permissions'] = permissionToDb;
+    event.permissions = permissionToDb;
     super.submit(event);
   }
 
@@ -108,7 +108,7 @@ export class RoleEditComponent extends EditComponent implements OnInit {
             this.model[v] = successData[v];
           });
           permissions = successData['permissions'];
-          let uuids = [];
+          const uuids = [];
           permissions.forEach(p => {
             uuids.push(p['uuid']);
             this.rolePermissionsMap.set(p['uuid'], p);
@@ -119,11 +119,11 @@ export class RoleEditComponent extends EditComponent implements OnInit {
 
       }
       this.commonService.responseWrapperProcess(allPermissions, (successData) => {
-        let nodeDbs = [];
+        const nodeDbs = [];
         successData.forEach((v2: any) => {
           this.roleAllPermissionsMap.set(v2['uuid'], v2);
-          let node = {};
-          if (v2['levels'] == 1) {
+          const node = {};
+          if (v2['levels'] === 1) {
             node['key'] = v2['uuid'];
             node['title'] = v2['name'];
             node['parentCode'] = v2['parentCode'];
@@ -138,8 +138,8 @@ export class RoleEditComponent extends EditComponent implements OnInit {
         });
         this.nodes = nodeDbs;
         this.rolePermissionsMap.forEach((value) => {
-          //value和key就是map的key，value，map是map本身
-          let node = this.nodesMap.get(value['uuid']);
+          // value和key就是map的key，value，map是map本身
+          const node = this.nodesMap.get(value['uuid']);
           if (node) {
             if (this.isChildrenCheck(node)) {
               this.defaultCheckedKeys.push(node['key']);
@@ -155,13 +155,13 @@ export class RoleEditComponent extends EditComponent implements OnInit {
 
   private isChildrenCheck(node: any) {
     let isCheck = true;
-    if (!this.rolePermissionsMap.get(node['key'])) {//当前节点没选中
+    if (!this.rolePermissionsMap.get(node['key'])) { // 当前节点没选中
       isCheck = false;
     } else {
-      let childrens: [] = node['children'];
+      const childrens: [] = node['children'];
       if (childrens) {
         childrens.forEach(value => {
-          if (!this.isChildrenCheck(value)) {//判断子节点的子节点是否有未选中
+          if (!this.isChildrenCheck(value)) { // 判断子节点的子节点是否有未选中
             isCheck = false;
           }
         });
@@ -177,8 +177,8 @@ export class RoleEditComponent extends EditComponent implements OnInit {
 
   private getChildren(successData: [], curNode) {
     successData.forEach((v2: any) => {
-      if (v2.parentCode == curNode['code']) {
-        let node = {};
+      if (v2.parentCode === curNode['code']) {
+        const node = {};
         node['key'] = v2['uuid'];
         node['title'] = v2['name'];
         node['parentCode'] = v2['parentCode'];

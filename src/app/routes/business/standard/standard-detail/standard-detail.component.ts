@@ -6,12 +6,11 @@ import { StandardService } from '../../../../service/standard/standard.service';
 @Component({
   selector: 'app-standard-detail',
   templateUrl: './standard-detail.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class StandardDetailComponent  extends DetailComponent implements OnInit {
+export class StandardDetailComponent extends DetailComponent implements OnInit {
 
-  constructor(public  standardService:StandardService,  public router: Router,   public activatedRoute: ActivatedRoute) {
-    super(standardService,router,activatedRoute,standardService.detailPropertys,"instrument");
+  constructor(public  standardService: StandardService, public router: Router, public activatedRoute: ActivatedRoute) {
+    super(standardService, router, activatedRoute, standardService.detailPropertys, 'instrument');
   }
 }

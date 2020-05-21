@@ -43,12 +43,13 @@ export class AppPageHeaderComponent implements OnInit, OnChanges, AfterViewInit,
   @ViewChild('conTpl', { static: false }) private conTpl: ElementRef;
   @ViewChild('affix', { static: false }) private affix: NzAffixComponent;
 
-/*  private get menus() {
-    return this.menuSrv.getPathByUrl(this.router.url, this.recursiveBreadcrumb);
-  }*/
-  private getMenusUrl(url):Menu[] {
+  /*  private get menus() {
+      return this.menuSrv.getPathByUrl(this.router.url, this.recursiveBreadcrumb);
+    }*/
+  private getMenusUrl(url): Menu[] {
     return this.menuSrv.getPathByUrl(url, this.recursiveBreadcrumb);
   }
+
   _titleVal: string = '';
   paths: PageHeaderPath[] = [];
 
@@ -56,6 +57,7 @@ export class AppPageHeaderComponent implements OnInit, OnChanges, AfterViewInit,
 
   _title: string | null;
   _titleTpl: TemplateRef<void>;
+
   @Input()
   set title(value: string | TemplateRef<void>) {
     if (value instanceof TemplateRef) {
@@ -85,8 +87,9 @@ export class AppPageHeaderComponent implements OnInit, OnChanges, AfterViewInit,
   @Input() content: TemplateRef<void>;
   @Input() extra: TemplateRef<void>;
   @Input() tab: TemplateRef<void>;
-   title18n:string = 'title18n';
-  menus:Menu[]
+  title18n: string = 'title18n';
+  menus: Menu[];
+
   // #endregion
 
   constructor(
@@ -127,37 +130,40 @@ export class AppPageHeaderComponent implements OnInit, OnChanges, AfterViewInit,
     this.setTitle().genBreadcrumb();
     this.cdr.detectChanges();
   }
-  private getParentPath(url:string):string{
-    return url.substring(0,url.lastIndexOf("/"));
+
+  private getParentPath(url: string): string {
+    return url.substring(0, url.lastIndexOf('/'));
   }
+
   private genBreadcrumb() {
-    let url=this.router.url;
-    let size=url.split("/").length;
-    this.menus=this.getMenusUrl(url);
-    for(let k=0;k<size;k++){
-      if(this.menus.length>0){
-          break;
-      }else{
-        url=this.getParentPath(url);
-        this.menus=this.getMenusUrl(url);
+    let url = this.router.url;
+    const size = url.split('/').length;
+    this.menus = this.getMenusUrl(url);
+    for (let k = 0; k < size; k++) {
+      if (this.menus.length > 0) {
+        break;
+      } else {
+        url = this.getParentPath(url);
+        this.menus = this.getMenusUrl(url);
       }
     }
-    if(url===this.router.url){//导航菜单
+    if (url === this.router.url) {// 导航菜单
       this.pathPorcess();
-    }else{
+    } else {
       const activatedRoute = this.injector.get(ActivatedRoute);
-      const breadcrumbOption: BreadcrumbOption[]= this.getBreadcrumbs(activatedRoute.root).filter(item => item.label !== 'no');
-      breadcrumbOption.forEach(v=>{
-        let menu:Menu={};
-        menu.link=v.url;
-        menu.i18n=v.label;
+      const breadcrumbOption: BreadcrumbOption[] = this.getBreadcrumbs(activatedRoute.root).filter(item => item.label !== 'no');
+      breadcrumbOption.forEach(v => {
+        let menu: Menu = {};
+        menu.link = v.url;
+        menu.i18n = v.label;
         this.menus.push(menu);
-      })
+      });
       this.pathPorcess();
     }
     return this;
   }
-  private pathPorcess(){
+
+  private pathPorcess() {
     const paths: PageHeaderPath[] = [];
     this.menus.forEach(item => {
       if (typeof item.hideInBreadcrumb !== 'undefined' && item.hideInBreadcrumb) return;
@@ -174,6 +180,7 @@ export class AppPageHeaderComponent implements OnInit, OnChanges, AfterViewInit,
     }
     this.paths = paths;
   }
+
   private getBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: BreadcrumbOption[] = []): BreadcrumbOption[] {
     const children: ActivatedRoute[] = route.children;
     // If there's no sub root, then stop the recurse and returns the generated breadcrumbs.
@@ -199,8 +206,9 @@ export class AppPageHeaderComponent implements OnInit, OnChanges, AfterViewInit,
       }
     }
   }
+
   private setTitle() {
-    if (this._title == null && this._titleTpl == null && this.autoTitle && this.menus&&  this.menus.length > 0) {
+    if (this._title == null && this._titleTpl == null && this.autoTitle && this.menus && this.menus.length > 0) {
       const item = this.menus[this.menus.length - 1];
       let title = item.text;
       if (item.i18n && this.i18nSrv) title = this.i18nSrv.fanyi(item.i18n);

@@ -32,10 +32,10 @@ export class StartupService {
     private titleService: TitleService,
     @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService,
     private httpClient: HttpClient,
-    private menuDataService:MenuDataService,
-    private userService:UserService,
+    private menuDataService: MenuDataService,
+    private userService: UserService,
     public router: Router,
-    private injector: Injector
+    private injector: Injector,
   ) {
     iconSrv.addIcon(...ICONS_AUTO, ...ICONS);
   }
@@ -50,33 +50,34 @@ export class StartupService {
         this.viaMock(resolve, reject);
       });
   }
-  
+
   private viaMock(resolve: any, reject: any) {
     const app: any = {
       name: `ng-alain`,
-      description: `Ng-zorro admin panel front-end framework`
+      description: `Ng-zorro admin panel front-end framework`,
     };
-   let user=this.tokenService.get();
-    user["avatar"]='./assets/tmp/img/avatar.jpg';
-    if(!this.menuDataService.permissionsLoginUser||this.menuDataService.permissionsLoginUser.length==0 ){//通过token换取权限
-      this.userService.tokenLogin(user["token"]).subscribe(res=>{
-        this.userService.responseWrapperProcess(res,(successData)=>{
-          let user = successData;
+    let user = this.tokenService.get();
+    user['avatar'] = './assets/tmp/img/avatar.jpg';
+    if (!this.menuDataService.permissionsLoginUser || this.menuDataService.permissionsLoginUser.length == 0) {//通过token换取权限
+      this.userService.tokenLogin(user['token']).subscribe(res => {
+        this.userService.responseWrapperProcess(res, (successData) => {
+          user = successData;
           this.menuDataService.permissionsLoginUser = deepCopy(user['permissions']);
           user['permissions'] = [];
-          this.setProcess(app,user,resolve,reject);
-        },(failureData)=>{
+          this.setProcess(app, user, resolve, reject);
+        }, (failureData) => {
           this.tokenService.clear();
           this.router.navigateByUrl(this.tokenService.login_url);
           resolve({});
         });
-      })
-    }else{
-      this.setProcess(app,user,resolve,reject);
+      });
+    } else {
+      this.setProcess(app, user, resolve, reject);
     }
 
   }
-  private setProcess(app,user,resolve: any, reject: any){
+
+  private setProcess(app, user, resolve: any, reject: any) {
     // Application information: including site name, description, year
     this.settingService.setApp(app);
     // User information: including name, avatar, email address
@@ -91,6 +92,7 @@ export class StartupService {
 
     resolve({});
   }
+
   load(): Promise<any> {
     // only works with promises
     // https://github.com/angular/angular/issues/15088

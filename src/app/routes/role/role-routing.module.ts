@@ -7,14 +7,20 @@ import { ACLGuard } from '@delon/acl';
 
 
 const routes: Routes = [
-  {path: '',redirectTo:"/role/list",pathMatch: 'full'},
-  {path: 'list',component:RoleListComponent,data:{title18n:"menu.operator.list"}},
-  {path: 'detail',component:RoleDetailComponent,data:{title18n:"menu.operator.detail"}},
-  {path: 'edit', canActivate: [ACLGuard],component:RoleEditComponent,data:{title18n:"menu.operator.edit",guard: 'role:edit'}}
+  { path: '', redirectTo: '/role/list', pathMatch: 'full' },
+  { path: 'list', component: RoleListComponent, data: { title18n: 'menu.operator.list' } },
+  { path: 'detail', component: RoleDetailComponent, data: { title18n: 'menu.operator.detail' } },
+  {
+    path: 'edit',
+    canActivate: [ACLGuard],
+    component: RoleEditComponent,
+    data: { title18n: 'menu.operator.edit', guard: 'role:edit' },
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class RoleRoutingModule { }
+export class RoleRoutingModule {
+}

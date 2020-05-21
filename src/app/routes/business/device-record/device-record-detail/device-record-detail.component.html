@@ -1,0 +1,9 @@
+<app-page-header></app-page-header>
+<nz-card [nzHoverable]="true" [nzBordered]="false">
+  <sv-container labelWidth="150" [col]="2">
+    <sv label="{{item.label| translate}}" *ngFor="let item of propertys">{{item.value}}</sv>
+  </sv-container>
+</nz-card>
+<div nz-row nzJustify="space-around" nzAlign="middle">
+  <div nz-col nzSpan="4"><button nz-button nzType="primary"  (click)="back()">{{'menu.operator.backlist'|translate}}</button></div>
+</div>

@@ -6,14 +6,20 @@ import { StandardEditComponent } from '../standard/standard-edit/standard-edit.c
 
 
 const routes: Routes = [
-  {path: '',redirectTo:"/business/standard/list",pathMatch: 'full'},
-  {path: 'list',component:StandardListComponent,data:{title18n:"menu.operator.list"}},
-  {path: 'detail',component:StandardDetailComponent,data:{title18n:"menu.operator.detail"}},
-  {path: 'edit', canActivate: [],component:StandardEditComponent,data:{title18n:"menu.operator.edit",guard: 'standard:edit'} }
+  { path: '', redirectTo: '/business/standard/list', pathMatch: 'full' },
+  { path: 'list', component: StandardListComponent, data: { title18n: 'menu.operator.list' } },
+  { path: 'detail', component: StandardDetailComponent, data: { title18n: 'menu.operator.detail' } },
+  {
+    path: 'edit',
+    canActivate: [],
+    component: StandardEditComponent,
+    data: { title18n: 'menu.operator.edit', guard: 'standard:edit' },
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class StandardRoutingModule { }
+export class StandardRoutingModule {
+}

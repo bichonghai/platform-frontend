@@ -14,7 +14,6 @@ import { SettingDrawerItemComponent } from './default/setting-drawer/setting-dra
 import { SettingDrawerComponent } from './default/setting-drawer/setting-drawer.component';
 import { SidebarComponent } from './default/sidebar/sidebar.component';
 import { LayoutFullScreenComponent } from './fullscreen/fullscreen.component';
-
 const SETTINGDRAWER = [SettingDrawerComponent, SettingDrawerItemComponent];
 
 const COMPONENTS = [
@@ -41,6 +40,7 @@ const HEADERCOMPONENTS = [
 import { LayoutPassportComponent } from './passport/passport.component';
 import { AppPageHeaderComponent } from './default/page-header/page-header.component';
 import { NzAffixModule, NzBreadCrumbModule, NzSkeletonModule } from 'ng-zorro-antd';
+import { SidebarSelfComponent } from './default/sidebar-self/sidebar-self.component';
 const PASSPORT = [
   LayoutPassportComponent
 ];
@@ -51,7 +51,8 @@ const PASSPORT = [
     ...COMPONENTS,
     ...HEADERCOMPONENTS,
     ...PASSPORT,
-    AppPageHeaderComponent
+    AppPageHeaderComponent,
+    SidebarSelfComponent,
   ],
   exports: [
     ...COMPONENTS,

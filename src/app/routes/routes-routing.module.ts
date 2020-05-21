@@ -21,34 +21,34 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutDefaultComponent,
-    canActivate: [ACLGuard,SimpleGuard],
+    canActivate: [ACLGuard, SimpleGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent, data: { title: '仪表盘' } },
       { path: 'exception', loadChildren: () => import('./exception/exception.module').then(m => m.ExceptionModule) },
       // 业务子模块
       // { path: 'widgets', loadChildren: () => import('./widgets/widgets.module').then(m => m.WidgetsModule) },
-    ]
+    ],
   },
   {
     path: 'user',
     component: LayoutDefaultComponent,
-    canActivate: [ACLGuard,SimpleGuard],
+    canActivate: [ACLGuard, SimpleGuard],
     data: { guard: 'user' },
-    loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+    loadChildren: () => import('./user/user.module').then(m => m.UserModule),
   },
   {
     path: 'role',
     component: LayoutDefaultComponent,
-    canActivate: [ACLGuard,SimpleGuard],
+    canActivate: [ACLGuard, SimpleGuard],
     data: { guard: 'role' },
-    loadChildren: () => import('./role/role.module').then(m => m.RoleModule)
+    loadChildren: () => import('./role/role.module').then(m => m.RoleModule),
   },
   {
     path: 'business',
     component: LayoutDefaultComponent,
     canActivate: [],
-    loadChildren: () => import('./business/business.module').then(m => m.BusinessModule)
+    loadChildren: () => import('./business/business.module').then(m => m.BusinessModule),
   },
   // 全屏布局
   // {
@@ -66,7 +66,7 @@ const routes: Routes = [
       { path: 'register', component: UserRegisterComponent, data: { title: '注册' } },
       { path: 'register-result', component: UserRegisterResultComponent, data: { title: '注册结果' } },
       { path: 'lock', component: UserLockComponent, data: { title: '锁屏' } },
-    ]
+    ],
   },
   // 单页不包裹Layout
   { path: 'callback/:type', component: CallbackComponent },
@@ -81,8 +81,9 @@ const routes: Routes = [
         // NOTICE: If you use `reuse-tab` component and turn on keepingScroll you can set to `disabled`
         // Pls refer to https://ng-alain.com/components/reuse-tab
         scrollPositionRestoration: 'top',
-      }
+      },
     )],
   exports: [RouterModule],
 })
-export class RouteRoutingModule { }
+export class RouteRoutingModule {
+}

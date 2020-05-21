@@ -40,19 +40,32 @@ export class MenuDataService {
           'i18n': 'menu.business',
           'icon': 'anticon-dashboard',
           'children': [
-              {
-                'key': 'instrument',
-                'text': '仪器管理',
-                'link': '/business/instrument',
-                'i18n': 'menu.instrument',
-              }, {
-                'key': 'standard',
-                'text': '标准管理',
-                'link': '/business/standard',
-                'i18n': 'menu.standard',
-              }
-            ],
-          
+            {
+              'key': 'instrument',
+              'text': '仪器管理',
+              'link': '/business/instrument',
+              'i18n': 'menu.instrument',
+            }, {
+              'key': 'standard',
+              'text': '标准管理',
+              'link': '/business/standard',
+              'i18n': 'menu.standard',
+            }
+          ],
+        },
+        {
+          'key': 'record',
+          'text': '报告管理',
+          'i18n': 'menu.record',
+          'icon': 'anticon-dashboard',
+          'children': [
+          {
+              'key': 'deviceRecord',
+              'text': '设备',
+              'link': '/business/device-record',
+              'i18n': 'menu.deviceRecord',
+            },
+          ],
         },
       ],
     }];
@@ -62,7 +75,7 @@ export class MenuDataService {
   constructor(public aclService: ACLService, private menuSrv: MenuService) {
     this.allMenu.forEach(v => {
       v.children.forEach(k => {
-        //this.keyToAcl(k);
+         this.keyToAcl(k);
       });
     });
   }
@@ -80,7 +93,7 @@ export class MenuDataService {
   }
 
   public initAcl() {
-    let roles = [];
+    const roles = [];
     this.permissionsLoginUser.forEach(v => {
       this.permissionsLoginUserMap.set(v['code'], v);
       roles.push(v['code']);

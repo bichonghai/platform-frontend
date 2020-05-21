@@ -27,12 +27,13 @@ export class UserListComponent extends ListComponent implements OnInit {
   };
   isVisible = false;
   item: any = {};
-  roleUuids=[];
-  roles=[];
-  constructor(public userService: UserService, public router: Router, private servicePathService: ServicePathService,public roleService:RoleService,
+  roleUuids = [];
+  roles = [];
+
+  constructor(public userService: UserService, public router: Router, private servicePathService: ServicePathService, public roleService: RoleService,
               public cdr: ChangeDetectorRef, public modal: NzModalService, @Inject(ALAIN_I18N_TOKEN) private i18NService: I18NService) {
     super(servicePathService.user, userService, modal, cdr, router);
-    for (let entry of userService.listPropertys) {
+    for (const entry of userService.listPropertys) {
       this.columns.push({ title: { i18n: 'user.' + entry }, index: entry });
     }
     this.columns.push(
@@ -41,16 +42,16 @@ export class UserListComponent extends ListComponent implements OnInit {
         buttons: [
           {
             i18n: 'menu.operator.detail',
-            click: (item: any) => this.detail(item)
+            click: (item: any) => this.detail(item),
           },
           {
             i18n: 'menu.operator.edit',
             click: (item: any) => this.edit(item),
-            acl:["user:edit"]
+            acl: ['user:edit'],
           },
           {
             i18n: 'user.role.manager',
-            acl:["user.role.manager"],
+            acl: ['user.role.manager'],
             click: (item: any) => this.showModal(item),
           },
         ]
@@ -61,35 +62,36 @@ export class UserListComponent extends ListComponent implements OnInit {
 
   showModal(item): void {
     this.item = item;
-    zip(this.userService.userRoleUuids(item["uuid"]),this.roleService.listAll()).subscribe(([userRoleUuidsData, rolesData])=> {
-      this.commonService.responseWrapperProcess(userRoleUuidsData,(successData)=>{
-        this.roleUuids=successData;
+    zip(this.userService.userRoleUuids(item.uuid), this.roleService.listAll()).subscribe(([userRoleUuidsData, rolesData]) => {
+      this.commonService.responseWrapperProcess(userRoleUuidsData, (successData) => {
+        this.roleUuids = successData;
 
-      },(failureData)=>{
+      }, (failureData) => {
 
       });
-      this.commonService.responseWrapperProcess(rolesData,(successData)=>{
-        this.roles=successData;
+      this.commonService.responseWrapperProcess(rolesData, (successData) => {
+        this.roles = successData;
 
-      },(failureData)=>{
+      }, (failureData) => {
 
       });
       this.isVisible = true;
-    })
+    });
   }
+
   handleCancel() {
     this.isVisible = false;
   }
 
   handleOk() {
-    this.userService.userRoleUuidsToUser( this.item["uuid"],this.roleUuids).subscribe(v=>{
-      this.commonService.responseWrapperProcess(v,(successData)=>{
-        this.roleUuids=successData;
+    this.userService.userRoleUuidsToUser(this.item.uuid, this.roleUuids).subscribe(v => {
+      this.commonService.responseWrapperProcess(v, (successData) => {
+        this.roleUuids = successData;
         this.isVisible = false;
-      },(failureData)=>{
+      }, (failureData) => {
 
       });
-    })
+    });
 
   }
 }

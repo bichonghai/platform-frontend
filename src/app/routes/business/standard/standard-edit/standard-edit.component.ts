@@ -9,8 +9,7 @@ import { StandardService } from '../../../../service/standard/standard.service';
 @Component({
   selector: 'app-standard-edit',
   templateUrl: './standard-edit.component.html',
-  styles: [
-  ]
+  styles: [],
 })
 export class StandardEditComponent extends EditComponent implements OnInit {
 
@@ -18,15 +17,20 @@ export class StandardEditComponent extends EditComponent implements OnInit {
     properties: {
       name: { type: 'string', ui: { i18n: 'standard.name' }, maxLength: 150 },
       code: { type: 'string', ui: { i18n: 'standard.code' }, maxLength: 150 },
-      description: { type: 'string', ui: { i18n: 'standard.description', widget: 'textarea',
-          autosize: { minRows: 2, maxRows: 6 },}, maxLength: 150 },
+      description: {
+        type: 'string', ui: {
+          i18n: 'standard.description', widget: 'textarea',
+          autosize: { minRows: 2, maxRows: 6 },
+        }, maxLength: 150,
+      },
     },
-    required: ['name','code'],
+    required: ['name', 'code'],
     ui: {
       spanLabelFixed: 150,
       grid: { span: 24 },
     },
   };
+
   constructor(public standardService: StandardService,
               public router: Router, public activatedRoute: ActivatedRoute,
               public msg: NzMessageService, public modal: NzModalService,
