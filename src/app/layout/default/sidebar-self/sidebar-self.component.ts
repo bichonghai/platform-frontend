@@ -189,9 +189,9 @@ export class SidebarSelfComponent   implements OnInit, OnDestroy {
   toggleOpen(item: Nav): void {
     if (!this.openStrictly) {
       this.menuSrv.visit(this.list, i => {
-        if (i !== item){
+        /*if (i !== item){
           i._open = false;
-        }
+        }*/
       });
       let pItem = item.__parent;
       while (pItem) {
@@ -220,9 +220,9 @@ export class SidebarSelfComponent   implements OnInit, OnDestroy {
     const { menuSrv, recursivePath, openStrictly } = this;
     let findItem = menuSrv.getHit(this.menuSrv.menus, url!, recursivePath, i => {
       i._selected = false;
-      if (!openStrictly) {
+     /* if (!openStrictly) {
         i._open = false;
-      }
+      }*/
     });
     if (findItem == null){
       return;
@@ -253,9 +253,9 @@ export class SidebarSelfComponent   implements OnInit, OnDestroy {
             i._hidden = true;
           }
         }
-        if (this.openStrictly) {
+      /*  if (this.openStrictly) {
           i._open = i.open != null ? i.open : false;
-        }
+        }*/
       });
       this.list = menuSrv.menus;
       cdr.detectChanges();

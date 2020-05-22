@@ -1,11 +1,11 @@
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ServicePathService } from '../../../service/service-path.service';
+import { ServicePathService } from '../../../../service/service-path.service';
 import { NzModalService } from 'ng-zorro-antd';
 import { ALAIN_I18N_TOKEN } from '@delon/theme';
-import { I18NService } from '../../../core';
-import { RoleService } from '../../../service/role/role.service';
-import { ListComponent } from '../../common/component/list-component';
+import { I18NService } from '../../../../core/index';
+import { RoleService } from '../../../../service/role/role.service';
+import { ListComponent } from '../../../common/component/list-component';
 
 @Component({
   selector: 'app-role-list',

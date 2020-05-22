@@ -22,13 +22,13 @@ export class MenuDataService {
             {
               'key': 'user',
               'text': '用户管理',
-              'link': '/user',
+              'link': '/security/user',
               'i18n': 'menu.user',
             },
             {
               'key': 'role',
               'text': '角色管理',
-              'link': '/role',
+              'link': '/security/role',
               'i18n': 'menu.role',
             },
           ],

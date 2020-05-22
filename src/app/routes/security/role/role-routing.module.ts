@@ -7,7 +7,7 @@ import { ACLGuard } from '@delon/acl';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/role/list', pathMatch: 'full' },
+  { path: '', redirectTo: '/security/role/list', pathMatch: 'full' },
   { path: 'list', component: RoleListComponent, data: { title18n: 'menu.operator.list' } },
   { path: 'detail', component: RoleDetailComponent, data: { title18n: 'menu.operator.detail' } },
   {

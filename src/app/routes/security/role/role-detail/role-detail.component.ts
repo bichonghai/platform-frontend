@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DetailComponent } from '../../common/component/detail-component';
-import { RoleService } from '../../../service/role/role.service';
+import { DetailComponent } from '../../../common/component/detail-component';
+import { RoleService } from '../../../../service/role/role.service';
 
 @Component({
   selector: 'app-role-detail',

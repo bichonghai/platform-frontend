@@ -1,14 +1,14 @@
 import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { ServicePathService } from '../../../service/service-path.service';
+import { ServicePathService } from '../../../../service/service-path.service';
 import { Router } from '@angular/router';
-import { UserService } from '../../../service/user/user.service';
-import { ListComponent } from '../../common/component/list-component';
+import { UserService } from '../../../../service/user/user.service';
+import { ListComponent } from '../../../common/component/list-component';
 import { NzModalService } from 'ng-zorro-antd';
 import { ALAIN_I18N_TOKEN } from '@delon/theme';
 import { I18NService } from '@core';
 import { SFComponent } from '@delon/form';
 import { zip } from 'rxjs';
-import { RoleService } from '../../../service/role/role.service';
+import { RoleService } from '../../../../service/role/role.service';
 
 @Component({
   selector: 'app-user-list',

@@ -31,23 +31,15 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'user',
+    path: 'security',
     component: LayoutDefaultComponent,
     canActivate: [ACLGuard, SimpleGuard],
-    data: { guard: 'user' },
-    loadChildren: () => import('./user/user.module').then(m => m.UserModule),
-  },
-  {
-    path: 'role',
-    component: LayoutDefaultComponent,
-    canActivate: [ACLGuard, SimpleGuard],
-    data: { guard: 'role' },
-    loadChildren: () => import('./role/role.module').then(m => m.RoleModule),
+    loadChildren: () => import('./security/security.module').then(m => m.SecurityModule),
   },
   {
     path: 'business',
     component: LayoutDefaultComponent,
-    canActivate: [],
+    canActivate: [ACLGuard, SimpleGuard],
     loadChildren: () => import('./business/business.module').then(m => m.BusinessModule),
   },
   // 全屏布局

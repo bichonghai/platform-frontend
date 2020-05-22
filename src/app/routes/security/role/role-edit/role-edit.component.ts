@@ -1,12 +1,12 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { UserService } from '../../../service/user/user.service';
+import { UserService } from '../../../../service/user/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzFormatEmitEvent, NzMessageService, NzModalService, NzTreeComponent, NzTreeNode } from 'ng-zorro-antd';
 import { ALAIN_I18N_TOKEN } from '@delon/theme';
 import { I18NService } from '@core';
-import { EditComponent } from '../../common/component/edit-component';
-import { RoleService } from '../../../service/role/role.service';
-import { PermissionService } from '../../../service/permission/permission.service';
+import { EditComponent } from '../../../common/component/edit-component';
+import { RoleService } from '../../../../service/role/role.service';
+import { PermissionService } from '../../../../service/permission/permission.service';
 import { Observable, of, zip } from 'rxjs';
 
 @Component({
