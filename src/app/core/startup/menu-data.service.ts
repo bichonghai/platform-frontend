@@ -61,10 +61,17 @@ export class MenuDataService {
           'children': [
           {
               'key': 'deviceRecord',
-              'text': '设备',
+              'text': '设备报告管理',
               'link': '/business/device-record',
               'i18n': 'menu.deviceRecord',
             },
+            {
+              'key': 'instrumentRecord',
+              'text': '仪器报告管理',
+              'link': '/business/instrument-record',
+              'i18n': 'menu.instrumentRecord',
+            },
+
           ],
         },
       ],

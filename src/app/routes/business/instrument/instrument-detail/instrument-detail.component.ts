@@ -6,12 +6,11 @@ import { InstrumentService } from '../../../../service/instrument/instrument.ser
 @Component({
   selector: 'app-instrument-detail',
   templateUrl: './instrument-detail.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class InstrumentDetailComponent  extends DetailComponent implements OnInit {
+export class InstrumentDetailComponent extends DetailComponent implements OnInit {
 
-  constructor(public  instrumentService:InstrumentService,  public router: Router,   public activatedRoute: ActivatedRoute) {
-    super(instrumentService,router,activatedRoute,instrumentService.detailPropertys,"instrument");
+  constructor(public  instrumentService: InstrumentService, public router: Router, public activatedRoute: ActivatedRoute) {
+    super(instrumentService, router, activatedRoute, instrumentService.detailPropertys, 'instrument');
   }
 }

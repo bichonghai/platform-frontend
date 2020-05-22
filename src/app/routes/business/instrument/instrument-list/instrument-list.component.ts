@@ -10,41 +10,42 @@ import { InstrumentService } from '../../../../service/instrument/instrument.ser
 @Component({
   selector: 'app-instrument-list',
   templateUrl: './instrument-list.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class InstrumentListComponent  extends ListComponent implements OnInit {
-  schema  = {
+export class InstrumentListComponent extends ListComponent implements OnInit {
+  schema = {
     properties: {
-      type: { type: 'string', maxLength: 50 ,ui:{i18n:"instrument.type"}},
-      name: { type: 'string', maxLength: 50,ui:{i18n:"instrument.name"} },
+      type: { type: 'string', maxLength: 50, ui: { i18n: 'instrument.type' } },
+      name: { type: 'string', maxLength: 50, ui: { i18n: 'instrument.name' } },
     },
     ui: {
-      spanLabel: 8
+      spanLabel: 8,
     },
-  }
+  };
+
   constructor(public instrumentService: InstrumentService, public router: Router, private servicePathService: ServicePathService,
               public cdr: ChangeDetectorRef, public modal: NzModalService, @Inject(ALAIN_I18N_TOKEN) private i18NService: I18NService) {
     super(servicePathService.instrument, instrumentService, modal, cdr, router);
-    for (let entry of instrumentService.listPropertys) {
-      this.columns.push({title:{i18n:"instrument."+entry},index:entry})
+    for (const entry of instrumentService.listPropertys) {
+      this.columns.push({ title: { i18n: 'instrument.' + entry }, index: entry });
     }
     this.columns.push(
       {
         title: '操作',
         buttons: [
           {
-            i18n:'menu.operator.detail',
-            click: (item: any) => this.detail(item)
+            i18n: 'menu.operator.detail',
+            click: (item: any) => this.detail(item),
           },
           {
-            i18n:'menu.operator.edit',
-            acl:["instrument:edit"],
-            click: (item: any) => this.edit(item)
+            i18n: 'menu.operator.edit',
+            acl: ['instrument:edit'],
+            click: (item: any) => this.edit(item),
           },
         ]
-        ,}
-    )
+        ,
+      },
+    );
   }
 
   ngOnInit(): void {

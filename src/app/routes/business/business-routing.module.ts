@@ -17,6 +17,11 @@ const routes: Routes = [
     canActivate: [],
     loadChildren: () => import('./device-record/device-record.module').then(m => m.DeviceRecordModule)
   },
+  {
+    path: 'instrument-record',
+    canActivate: [],
+    loadChildren: () => import('./instrument-record/instrument-record.module').then(m => m.InstrumentRecordModule)
+  },
 ];
 
 @NgModule({

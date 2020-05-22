@@ -6,13 +6,20 @@ import { InstrumentEditComponent } from './instrument-edit/instrument-edit.compo
 
 
 const routes: Routes = [
-  {path: '',redirectTo:"/business/instrument/list",pathMatch: 'full'},
-  {path: 'list',component:InstrumentListComponent,data:{title18n:"menu.operator.list"}},
-  {path: 'detail',component:InstrumentDetailComponent,data:{title18n:"menu.operator.detail"}},
-  {path: 'edit', canActivate: [],component:InstrumentEditComponent,data:{title18n:"menu.operator.edit",guard: 'instrument:edit'} }
+  { path: '', redirectTo: '/business/instrument/list', pathMatch: 'full' },
+  { path: 'list', component: InstrumentListComponent, data: { title18n: 'menu.operator.list' } },
+  { path: 'detail', component: InstrumentDetailComponent, data: { title18n: 'menu.operator.detail' } },
+  {
+    path: 'edit',
+    canActivate: [],
+    component: InstrumentEditComponent,
+    data: { title18n: 'menu.operator.edit', guard: 'instrument:edit' },
+  },
 ];
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class InstrumentRoutingModule { }
+export class InstrumentRoutingModule {
+}

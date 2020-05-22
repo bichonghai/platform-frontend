@@ -19,22 +19,22 @@ export class DeviceRecordEditComponent extends EditComponent implements OnInit {
   schema = {
     properties: {
       name: { type: 'string', maxLength: 50, ui: { i18n: 'deviceRecord.name' } },
-      weight: { type: 'string', maxLength: 50, ui: { i18n: 'deviceRecord.weight' } },
-      length: { type: 'string', maxLength: 50, ui: { i18n: 'deviceRecord.length' } },
       code: { type: 'string', maxLength: 50, ui: { i18n: 'deviceRecord.code' } },
+      weight: { type: 'number', maxLength: 50, ui: { i18n: 'deviceRecord.weight' } },
+      length: { type: 'number', maxLength: 50, ui: { i18n: 'deviceRecord.length' } },
+      temperature: { type: 'number', maxLength: 50, ui: { i18n: 'deviceRecord.temperature' } },
+      wind: { type: 'number', maxLength: 50, ui: { i18n: 'deviceRecord.wind' } },
+      load: { type: 'number', maxLength: 50, ui: { i18n: 'deviceRecord.load' } },
       weather: { type: 'string', maxLength: 50, ui: { i18n: 'deviceRecord.weather' } },
-      temperature: { type: 'string', maxLength: 50, ui: { i18n: 'deviceRecord.temperature' } },
-      wind: { type: 'string', maxLength: 50, ui: { i18n: 'deviceRecord.wind' } },
       manufacturer: { type: 'string', maxLength: 50, ui: { i18n: 'deviceRecord.manufacturer' } },
-      manufactureDate: { type: 'string', maxLength: 50, ui: { i18n: 'deviceRecord.manufactureDate' } },
+      manufactureDate: { type: 'string', format: 'date', maxLength: 50, ui: { i18n: 'deviceRecord.manufactureDate' } },
       testLocation: { type: 'string', maxLength: 50, ui: { i18n: 'deviceRecord.testLocation' } },
-      testDate: { type: 'string', maxLength: 50, ui: { i18n: 'deviceRecord.testDate' } },
-      load: { type: 'string', maxLength: 50, ui: { i18n: 'deviceRecord.load' } }
+      testDate: { type: 'string', format: 'date', maxLength: 50, ui: { i18n: 'deviceRecord.testDate' } },
     },
     required: ['name', 'code'],
     ui: {
       spanLabelFixed: 150,
-      grid: { span: 24 },
+      grid: { span: 12 },
     },
   };
 
