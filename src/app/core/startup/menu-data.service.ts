@@ -50,6 +50,11 @@ export class MenuDataService {
               'text': '标准管理',
               'link': '/business/standard',
               'i18n': 'menu.standard',
+            }, {
+              'key': 'project',
+              'text': '项目管理',
+              'link': '/business/project',
+              'i18n': 'menu.project',
             }
           ],
         },

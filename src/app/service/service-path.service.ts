@@ -11,6 +11,7 @@ export class ServicePathService {
   public role = environment.platformUrl + '/role';
   public permission = environment.platformUrl + '/permission';
   public instrument = environment.platformUrl + '/instrument';
+  public project = environment.platformUrl + '/project';
   public instrumentRecord = environment.platformUrl + '/instrumentRecord';
   public standard = environment.platformUrl + '/standard';
   public deviceRecord = environment.platformUrl + '/deviceRecord';

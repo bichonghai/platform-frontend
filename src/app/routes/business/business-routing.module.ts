@@ -3,6 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'project',
+    canActivate: [],
+    loadChildren: () => import('./project/project.module').then(m => m.ProjectModule)
+  },
+  {
     path: 'instrument',
     canActivate: [],
     loadChildren: () => import('./instrument/instrument.module').then(m => m.InstrumentModule)

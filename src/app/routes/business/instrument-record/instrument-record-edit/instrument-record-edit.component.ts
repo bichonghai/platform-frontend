@@ -29,7 +29,7 @@ export class InstrumentRecordEditComponent  extends EditComponent implements OnI
     required: ['name'],
     ui: {
       spanLabelFixed: 150,
-      grid: { span: 24 },
+      grid: { span: 12 },
     },
   };
   constructor(public instrumentRecordService: InstrumentRecordService,
