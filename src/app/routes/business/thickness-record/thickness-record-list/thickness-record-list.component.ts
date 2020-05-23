@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { ListComponent } from '../../../common/component/list-component';
-import { SFSelectWidgetSchema } from '@delon/form';
+import { SFSchema, SFSelectWidgetSchema } from '@delon/form';
 import { Router } from '@angular/router';
 import { ServicePathService } from '../../../../service/service-path.service';
 import { ProjectService } from '../../../../service/project/project.service';
@@ -9,24 +9,24 @@ import { ALAIN_I18N_TOKEN } from '@delon/theme';
 import { I18NService } from '../../../../core';
 import { deepCopy } from '@delon/util';
 import { ThicknessRecordService } from '../../../../service/thickness-record/thickness-record.service';
+import { DeviceRecordService } from '../../../../service/device-record/device-record.service';
 
 @Component({
   selector: 'app-thickness-record-list',
   templateUrl: './thickness-record-list.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class ThicknessRecordListComponent  extends ListComponent implements OnInit {
-  schema = {
+export class ThicknessRecordListComponent extends ListComponent implements OnInit {
+  schema: SFSchema = {
     properties: {
-      projectUuid: {
+      deviceRecordUuid: {
         type: 'string',
         enum: [
-          { label: '请选择项目名称', value: '' },
+          { label: '请选择样机名称-编码', value: '' },
         ],
         default: '',
         ui: {
-          i18n: 'deviceRecord.projectUuid',
+          i18n: 'deviceRecord.name',
           widget: 'select',
         } as SFSelectWidgetSchema,
       },
@@ -37,32 +37,33 @@ export class ThicknessRecordListComponent  extends ListComponent implements OnIn
   };
   initFinish = false;
 
-  constructor(public thicknessRecordService: ThicknessRecordService, public router: Router, private servicePathService: ServicePathService,
-              private projectService: ProjectService, public cdr: ChangeDetectorRef, public modal: NzModalService, @Inject(ALAIN_I18N_TOKEN) private i18NService: I18NService) {
+  constructor(public deviceRecordService: DeviceRecordService, public thicknessRecordService: ThicknessRecordService, public router: Router,
+              private servicePathService: ServicePathService,
+              public cdr: ChangeDetectorRef, public modal: NzModalService, @Inject(ALAIN_I18N_TOKEN) private i18NService: I18NService) {
     super(servicePathService.thicknessRecord, thicknessRecordService, modal, cdr, router);
-    projectService.listAll().subscribe(v => {
+    deviceRecordService.listAll().subscribe(v => {
       this.commonService.responseWrapperProcess(v, (successData: any[]) => {
-        this.projectProcess(successData, null);
+        this.deviceRecordProcess(successData, null);
       }, (failData) => {
-        this.projectProcess(null, failData);
+        this.deviceRecordProcess(null, failData);
       });
     });
   }
 
-  projectProcess(successData, failureData) {
+  deviceRecordProcess(successData, failureData) {
     this.initFinish = true;
-    const projects = [{ label: '请选择项目名称', value: '' }];
+    const projects = [{ label: '请选择样机名称-编码', value: '' }];
     const enumProject = {};
     if (successData) {
       successData.forEach(p => {
-        projects.push({ label: p['name'], value: p['uuid'] });
+        projects.push({ label: p['name'] + '-' + p['code'], value: p['uuid'] });
         enumProject[p['uuid']] = p['name'];
       });
     }
-    this.schema.properties.projectUuid['enum'] = projects;
+    this.schema.properties.deviceRecordUuid['enum'] = projects;
     this.schema = deepCopy(this.schema);
     for (const entry of this.thicknessRecordService.listPropertys) {
-      if (entry === 'projectUuid') {
+      if (entry === 'deviceRecordUuid') {
         this.columns.push({
           title: { i18n: 'thicknessRecord.' + entry }, type: 'enum', index: entry,
           enum:

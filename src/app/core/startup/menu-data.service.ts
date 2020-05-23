@@ -42,7 +42,7 @@ export class MenuDataService {
           'children': [
             {
               'key': 'instrument',
-              'text': '仪器管理',
+              'text': '仪器报告',
               'link': '/business/instrument',
               'i18n': 'menu.instrument',
             }, {
@@ -71,23 +71,22 @@ export class MenuDataService {
           'children': [
           {
               'key': 'deviceRecord',
-              'text': '设备报告管理',
+              'text': '样机报告',
               'link': '/business/device-record',
               'i18n': 'menu.deviceRecord',
             },
             {
-              'key': 'thicknessRecord',
-              'text': '厚度锈蚀检测管理',
-              'link': '/business/thickness-record',
-              'i18n': 'menu.thicknessRecord',
-            },
-            {
               'key': 'instrumentRecord',
-              'text': '仪器报告管理',
+              'text': '仪器报告',
               'link': '/business/instrument-record',
               'i18n': 'menu.instrumentRecord',
             },
-
+            {
+              'key': 'thicknessRecord',
+              'text': '样机表面报告',
+              'link': '/business/thickness-record',
+              'i18n': 'menu.thicknessRecord',
+            },
           ],
         },
       ],

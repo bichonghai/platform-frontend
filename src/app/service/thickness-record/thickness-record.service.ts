@@ -11,6 +11,6 @@ export class ThicknessRecordService extends CommonService {
   constructor(protected servicePathService: ServicePathService, protected httpClient: HttpClient) {
     super(servicePathService.thicknessRecord, httpClient);
   }
-  detailPropertys = new Set(['projectUuid', 'thicknessSectionPositionRecordUuid', 'thickness', 'paint', 'rust']);
-  listPropertys = new Set(['projectUuid', 'thicknessSectionPositionRecordUuid', 'thickness', 'paint', 'rust']);
+  detailPropertys = new Set(['deviceRecordUuid', 'thicknessSectionPositionRecordUuid', 'thickness', 'paint', 'rust']);
+  listPropertys = new Set(['deviceRecordUuid', 'thicknessSectionPositionRecordUuid', 'thickness', 'paint', 'rust']);
 }

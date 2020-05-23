@@ -9,6 +9,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { ALAIN_I18N_TOKEN } from '@delon/theme';
 import { I18NService } from '../../../../core';
 import { ThicknessRecordService } from '../../../../service/thickness-record/thickness-record.service';
+import { DeviceRecordService } from '../../../../service/device-record/device-record.service';
 
 @Component({
   selector: 'app-thickness-record-edit',
@@ -20,14 +21,14 @@ export class ThicknessRecordEditComponent  extends EditComponent implements OnIn
   detailPropertys = new Set(['projectUuid', 'thicknessSectionPositionRecordUuid', 'thickness', 'paint', 'rust']);
   schema = {
     properties: {
-      projectUuid: {
+      deviceRecordUuid: {
         type: 'string',
         enum: [
-          { label: '请选择项目名称', value: '' },
+          { label: '请选择样机名称-编码', value: '' },
         ],
         default: '',
         ui: {
-          i18n: 'deviceRecord.projectUuid',
+          i18n: 'deviceRecord.name',
           widget: 'select',
         } as SFSelectWidgetSchema,
       },
@@ -42,26 +43,26 @@ export class ThicknessRecordEditComponent  extends EditComponent implements OnIn
     },
   };
   initFinish = false;
-  constructor(public thicknessRecordService: ThicknessRecordService, public projectService: ProjectService,
+  constructor(public thicknessRecordService: ThicknessRecordService, public deviceRecordService: DeviceRecordService,
               public router: Router, public activatedRoute: ActivatedRoute,
               public msg: NzMessageService, public modal: NzModalService,
               @Inject(ALAIN_I18N_TOKEN) public i18NService: I18NService) {
     super(thicknessRecordService, modal, msg, router, i18NService, activatedRoute);
-    projectService.listAll().subscribe(v => {
+    deviceRecordService.listAll().subscribe(v => {
       this.initFinish = true;
       this.commonService.responseWrapperProcess(v, (successData: any[]) => {
-        this.projectProcess(successData, null);
+        this.deviceRecordProcess(successData, null);
       }, (failData) => {
-        this.projectProcess(null, failData);
+        this.deviceRecordProcess(null, failData);
       });
     });
   }
-  projectProcess(successData, failureData) {
-    const projects = [{ label: '请选择项目名称', value: '' }];
+  deviceRecordProcess(successData, failureData) {
+    const projects = [{ label: '请选择样机名称-编码', value: '' }];
     successData.forEach(p => {
-      projects.push({ label: p['name'], value: p['uuid'] });
+      projects.push({ label:p['name'] + '-' + p['code'], value: p['uuid'] });
     });
-    this.schema.properties.projectUuid['enum'] = projects;
+    this.schema.properties.deviceRecordUuid['enum'] = projects;
   }
   ngOnInit(): void {
     this.listPropertys = ['uuid', ...this.thicknessRecordService.listPropertys];
