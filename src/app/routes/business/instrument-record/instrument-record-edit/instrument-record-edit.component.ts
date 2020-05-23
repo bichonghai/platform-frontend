@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { EditComponent } from '../../../common/component/edit-component';
-import { InstrumentService } from '../../../../service/instrument/instrument.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -8,8 +7,6 @@ import { ALAIN_I18N_TOKEN } from '@delon/theme';
 import { I18NService } from '../../../../core';
 import { InstrumentRecordService } from '../../../../service/instrument-record/instrument-record.service';
 import { SFSelectWidgetSchema } from '@delon/form';
-import { deepCopy } from '@delon/util';
-import { DeviceRecordService } from '../../../../service/device-record/device-record.service';
 import { ProjectService } from '../../../../service/project/project.service';
 
 @Component({

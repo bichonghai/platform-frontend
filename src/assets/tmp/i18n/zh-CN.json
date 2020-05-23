@@ -19,6 +19,7 @@
   "menu.instrument":"仪器管理",
   "menu.project":"项目管理",
   "menu.standard":"标准管理",
+  "menu.thicknessSectionPosition":"板厚截面位置管理",
   "user.userName":"用户名",
   "user.userFullName":"全名",
   "user.password":"密码",
@@ -64,7 +65,9 @@
   "deviceRecord.testLocation":"测试地点",
   "deviceRecord.testDate":"测试日期",
   "deviceRecord.load":"载重",
-
+  "thicknessSectionPosition.sectionBridge":"桥吊截面",
+  "thicknessSectionPosition.sectionCrane":"门机截面",
+  "thicknessSectionPosition.position":"位置",
   "menu.lang": "语言",
 
   "menu.search.placeholder": "搜索：员工、文件、照片等",

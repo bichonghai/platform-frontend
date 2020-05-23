@@ -27,6 +27,11 @@ const routes: Routes = [
     canActivate: [],
     loadChildren: () => import('./instrument-record/instrument-record.module').then(m => m.InstrumentRecordModule)
   },
+  {
+    path: 'thickness-section-position',
+    canActivate: [],
+    loadChildren: () => import('./thickness-section-position/thickness-section-position.module').then(m => m.ThicknessSectionPositionModule)
+  },
 ];
 
 @NgModule({

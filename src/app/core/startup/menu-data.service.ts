@@ -55,6 +55,11 @@ export class MenuDataService {
               'text': '项目管理',
               'link': '/business/project',
               'i18n': 'menu.project',
+            }, {
+              'key': 'project',
+              'text': '板厚截面位置',
+              'link': '/business/thickness-section-position',
+              'i18n': 'menu.thicknessSectionPosition',
             }
           ],
         },
