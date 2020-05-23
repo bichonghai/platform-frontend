@@ -11,6 +11,7 @@ export class InstrumentRecordService extends CommonService {
   constructor(protected servicePathService: ServicePathService, protected httpClient: HttpClient) {
     super(servicePathService.instrumentRecord, httpClient);
   }
-  detailPropertys = new Set([ 'name', 'deviceRecordName', 'code', 'type', 'validityDate', 'operator', 'dataCollation', 'dataAnalysis']);
-  listPropertys = new Set([ 'name', 'deviceRecordName', 'code', 'type', 'validityDate', 'operator', 'dataCollation', 'dataAnalysis']);
+
+  detailPropertys = new Set(['projectUuid', 'name', 'deviceRecordName', 'code', 'type', 'validityDate', 'operator', 'dataCollation', 'dataAnalysis']);
+  listPropertys = new Set(['projectUuid', 'name', 'deviceRecordName', 'code', 'type', 'validityDate', 'operator', 'dataCollation', 'dataAnalysis']);
 }

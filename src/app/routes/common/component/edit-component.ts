@@ -6,46 +6,49 @@ import { SFComponent } from '@delon/form';
 import { I18NService } from '@core';
 
 export class EditComponent {
-  public uuid:string="";
-  public model:any={};
+  public uuid: string = '';
+  public model: any = {};
   @ViewChild('sf', { static: false }) public sf: SFComponent;
-  public listPropertys=[];
-  public path:string;
-  constructor(public commonService:CommonService,public modal: NzModalService,public msg: NzMessageService,public router:Router, public i18NService: I18NService, public activatedRoute: ActivatedRoute,) {
-    this.path=this.router.url.substring(0,this.router.url.lastIndexOf("/"));
-    this.activatedRoute.queryParams.subscribe((v:Params)=>{
-      this.uuid=v.uuid;
-    })
+  public listPropertys = [];
+  public path: string;
+
+  constructor(public commonService: CommonService, public modal: NzModalService, public msg: NzMessageService, public router: Router, public i18NService: I18NService, public activatedRoute: ActivatedRoute) {
+    this.path = this.router.url.substring(0, this.router.url.lastIndexOf('/'));
+    this.activatedRoute.queryParams.subscribe((v: Params) => {
+      this.uuid = v.uuid;
+    });
   }
+
   ngOnInit(): void {
-    if(this.uuid && this.uuid.length>0){
-      this.commonService.detail(this.uuid).subscribe((v:any)=>{
-        this.commonService.responseWrapperProcess(v,(successData)=>{
-          this.listPropertys.forEach(v=>{
-            this.model[v]=successData[v]
-          })
+    if (this.uuid && this.uuid.length > 0) {
+      this.commonService.detail(this.uuid).subscribe((v: any) => {
+        this.commonService.responseWrapperProcess(v, (successData) => {
+          this.listPropertys.forEach(v2 => {
+            this.model[v2] = successData[v2];
+          });
           this.sf.refreshSchema();
-        },(failData)=>{
-          this.msg.error("获取信息失败");
+        }, (failData) => {
+          this.msg.error('获取信息失败');
         });
 
-      })
+      });
     }
   }
+
   submit(event) {
-    this.commonService.addOrUpdate(event).subscribe(v=>{
-      this.commonService.responseWrapperProcess(v,(successData)=>{
+    this.commonService.addOrUpdate(event).subscribe(v => {
+      this.commonService.responseWrapperProcess(v, (successData) => {
         this.modal.success({
           nzTitle: '',
           nzContent: '操作成功',
-          nzMask:false,
-          nzOnOk:()=>{
-            this.router.navigateByUrl(this.path+"/list");
-          }
-        })
-      },(failureData)=>{
-        this.commonService.formErrorProcess(failureData,this.sf);
+          nzMask: false,
+          nzOnOk: () => {
+            this.router.navigateByUrl(this.path + '/list');
+          },
+        });
+      }, (failureData) => {
+        this.commonService.formErrorProcess(failureData, this.sf);
       });
-    })
+    });
   }
 }

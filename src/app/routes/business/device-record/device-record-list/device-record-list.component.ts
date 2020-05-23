@@ -7,29 +7,71 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { ALAIN_I18N_TOKEN } from '@delon/theme';
 import { I18NService } from '@core';
 import { DeviceRecordService } from '../../../../service/device-record/device-record.service';
+import { ProjectService } from '../../../../service/project/project.service';
+import { SFSchema, SFSelectWidgetSchema } from '@delon/form';
+import { deepCopy } from '@delon/util';
 
 @Component({
   selector: 'app-device-record-list',
   templateUrl: './device-record-list.component.html',
-  styles: [
-  ]
+  styles: [],
 })
 export class DeviceRecordListComponent extends ListComponent implements OnInit {
-  schema = {
+  schema: SFSchema = {
     properties: {
-      name: { type: 'string', maxLength: 50, ui: { i18n: 'deviceRecord.name' } },
-      code: { type: 'string', maxLength: 50, ui: { i18n: 'deviceRecord.code' } },
-    },
-    ui: {
-      spanLabel: 8,
+      projectUuid: {
+        type: 'string',
+        enum: [
+          { label: '请选择项目名称', value: '' },
+        ],
+        default: '',
+        ui: {
+          i18n: 'deviceRecord.projectUuid',
+          widget: 'select',
+        } as SFSelectWidgetSchema,
+      },
+      name: { type: 'string', ui: { i18n: 'deviceRecord.name' } },
+      code: { type: 'string', ui: { i18n: 'deviceRecord.code' } },
     },
   };
+  initFinish = false;
 
-  constructor(public deviceRecordService: DeviceRecordService, public router: Router, private servicePathService: ServicePathService,
+  constructor(public deviceRecordService: DeviceRecordService, public router: Router, private servicePathService: ServicePathService, public projectService: ProjectService,
               public cdr: ChangeDetectorRef, public modal: NzModalService, @Inject(ALAIN_I18N_TOKEN) private i18NService: I18NService) {
     super(servicePathService.deviceRecord, deviceRecordService, modal, cdr, router);
-    for (const entry of deviceRecordService.listPropertys) {
-      this.columns.push({ title: { i18n: 'deviceRecord.' + entry }, index: entry });
+    projectService.listAll().subscribe(v => {
+      this.commonService.responseWrapperProcess(v, (successData: any[]) => {
+        this.projectProcess(successData, null);
+      }, (failData) => {
+        this.projectProcess(null, failData);
+      });
+    });
+  }
+
+  projectProcess(successData, failureData) {
+    this.initFinish = true;
+    const projects = [{ label: '请选择项目名称', value: '' }];
+    const enumProject = {};
+    if (successData) {
+      successData.forEach(p => {
+        projects.push({ label: p['name'], value: p['uuid'] });
+        enumProject[p['uuid']] = p['name'];
+      });
+    }
+
+    this.schema.properties.projectUuid['enum'] = projects;
+    this.schema = deepCopy(this.schema);
+    for (const entry of this.deviceRecordService.listPropertys) {
+      if (entry === 'projectUuid') {
+        this.columns.push({
+          title: { i18n: 'deviceRecord.' + entry }, type: 'enum', index: entry,
+          enum:
+          enumProject,
+        });
+      } else {
+        this.columns.push({ title: { i18n: 'deviceRecord.' + entry }, index: entry });
+      }
+
     }
     this.columns.push(
       {

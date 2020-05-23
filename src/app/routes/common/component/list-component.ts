@@ -7,7 +7,7 @@ import { UserService } from '../../../service/user/user.service';
 import { SFComponent } from '@delon/form';
 
 export class ListComponent {
-  public q: any = {};//封装表达查询条件，如果喜欢sf组件，则不需要封装此对象
+  public q: any = {}; // 封装表达查询条件，如果喜欢sf组件，则不需要封装此对象
   public request: STReq = {
     method: 'POST',
     params: { 'search': {} },

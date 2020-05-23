@@ -7,6 +7,10 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { ALAIN_I18N_TOKEN } from '@delon/theme';
 import { I18NService } from '../../../../core';
 import { InstrumentRecordService } from '../../../../service/instrument-record/instrument-record.service';
+import { SFSelectWidgetSchema } from '@delon/form';
+import { deepCopy } from '@delon/util';
+import { DeviceRecordService } from '../../../../service/device-record/device-record.service';
+import { ProjectService } from '../../../../service/project/project.service';
 
 @Component({
   selector: 'app-instrument-record-edit',
@@ -17,6 +21,17 @@ import { InstrumentRecordService } from '../../../../service/instrument-record/i
 export class InstrumentRecordEditComponent  extends EditComponent implements OnInit {
   schema = {
     properties: {
+      projectUuid: {
+        type: 'string',
+        enum: [
+          { label: '请选择项目名称', value: '' },
+        ],
+        default: '',
+        ui: {
+          i18n: 'deviceRecord.projectUuid',
+          widget: 'select',
+        } as SFSelectWidgetSchema,
+      },
       name: { type: 'string', ui: { i18n: 'instrumentRecord.name' }, maxLength: 50 },
       deviceRecordName: { type: 'string', ui: { i18n: 'instrumentRecord.deviceRecordName' }, maxLength: 50 },
       code: { type: 'string', ui: { i18n: 'instrumentRecord.code' }, maxLength: 50 },
@@ -32,14 +47,28 @@ export class InstrumentRecordEditComponent  extends EditComponent implements OnI
       grid: { span: 12 },
     },
   };
-  constructor(public instrumentRecordService: InstrumentRecordService,
+  initFinish = false;
+  constructor(public instrumentRecordService: InstrumentRecordService, public projectService: ProjectService,
               public router: Router, public activatedRoute: ActivatedRoute,
               public msg: NzMessageService, public modal: NzModalService,
               @Inject(ALAIN_I18N_TOKEN) public i18NService: I18NService) {
     super(instrumentRecordService, modal, msg, router, i18NService, activatedRoute);
-
+    projectService.listAll().subscribe(v => {
+      this.initFinish = true;
+      this.commonService.responseWrapperProcess(v, (successData: any[]) => {
+        this.projectProcess(successData, null);
+      }, (failData) => {
+        this.projectProcess(null, failData);
+      });
+    });
   }
-
+  projectProcess(successData, failureData) {
+    const projects = [{ label: '请选择项目名称', value: '' }];
+    successData.forEach(p => {
+      projects.push({ label: p['name'], value: p['uuid'] });
+    });
+    this.schema.properties.projectUuid['enum'] = projects;
+  }
   ngOnInit(): void {
     this.listPropertys = ['uuid', ...this.instrumentRecordService.listPropertys];
     super.ngOnInit();

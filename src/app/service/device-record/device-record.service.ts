@@ -11,8 +11,8 @@ export class DeviceRecordService extends CommonService {
     super(servicePathService.deviceRecord, httpClient);
   }
 
-  detailPropertys = new Set(['name', 'weight', 'length', 'code', 'weather', 'temperature', 'wind',
+  detailPropertys = new Set(['projectUuid', 'name', 'weight', 'length', 'code', 'weather', 'temperature', 'wind',
     'manufacturer', 'manufactureDate', 'testLocation', 'testDate', 'load']);
-  listPropertys = new Set(['name', 'weight', 'length', 'code', 'weather', 'temperature', 'wind',
+  listPropertys = new Set(['projectUuid', 'name', 'weight', 'length', 'code', 'weather', 'temperature', 'wind',
     'manufacturer', 'manufactureDate', 'testLocation', 'testDate', 'load']);
 }
