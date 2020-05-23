@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { DetailComponent } from '../../../common/component/detail-component';
-import { DeviceRecordService } from '../../../../service/device-record/device-record.service';
-import { ResponseWrapper } from '../../../common/dto/response-wrapper';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ThicknessRecordService } from '../../../../service/thickness-record/thickness-record.service';
 import { ProjectService } from '../../../../service/project/project.service';
+import { ResponseWrapper } from '../../../common/dto/response-wrapper';
 
 @Component({
-  selector: 'app-device-record-detail',
-  templateUrl: './device-record-detail.component.html',
-  styles: [],
+  selector: 'app-thickness-record-detail',
+  templateUrl: './thickness-record-detail.component.html',
+  styles: [
+  ]
 })
-export class DeviceRecordDetailComponent extends DetailComponent implements OnInit {
+export class ThicknessRecordDetailComponent extends DetailComponent implements OnInit {
 
-  constructor(public  deviceRecordService: DeviceRecordService, public projectService: ProjectService, public router: Router, public activatedRoute: ActivatedRoute) {
-    super(deviceRecordService, router, activatedRoute, deviceRecordService.detailPropertys, 'deviceRecord');
+  constructor(public thicknessRecordService: ThicknessRecordService, public projectService: ProjectService, public router: Router, public activatedRoute: ActivatedRoute) {
+    super(thicknessRecordService, router, activatedRoute, thicknessRecordService.detailPropertys, 'thicknessRecord');
   }
-
   ngOnInit(): void {
     this.commonService.detail(this.uuid).subscribe((v: ResponseWrapper) => {
       this.commonService.responseWrapperProcess(v, (successData) => {

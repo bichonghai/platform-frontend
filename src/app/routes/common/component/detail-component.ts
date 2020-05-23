@@ -1,9 +1,11 @@
 import { ResponseWrapper } from '../dto/response-wrapper';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CommonService } from '../service/common.service';
+import { zip } from 'rxjs';
+import { ProjectService } from '../../../service/project/project.service';
 
-export class DetailComponent {
-  public uuid: string = '';
+export  class DetailComponent {
+  public uuid = '';
   public propertys = [];
   public path: string;
 
@@ -17,11 +19,9 @@ export class DetailComponent {
   ngOnInit(): void {
     this.commonService.detail(this.uuid).subscribe((v: ResponseWrapper) => {
       this.commonService.responseWrapperProcess(v, (successData) => {
-        for (let key in successData) {
-          if (this.detailPropertys.has(key)) {
-            this.propertys.push({ label: this.i18nPrefix + '.' + key, value: successData[key] });
-          }
-        }
+        this.detailPropertys.forEach(key => {
+          this.propertys.push({ label: this.i18nPrefix + '.' + key, value: successData[key] });
+        });
       }, (failureData) => {
 
       });

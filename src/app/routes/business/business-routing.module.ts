@@ -32,6 +32,11 @@ const routes: Routes = [
     canActivate: [],
     loadChildren: () => import('./thickness-section-position/thickness-section-position.module').then(m => m.ThicknessSectionPositionModule)
   },
+  {
+    path: 'thickness-record',
+    canActivate: [],
+    loadChildren: () => import('./thickness-record/thickness-record.module').then(m => m.ThicknessRecordModule)
+  },
 ];
 
 @NgModule({

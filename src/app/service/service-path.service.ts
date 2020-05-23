@@ -16,6 +16,7 @@ export class ServicePathService {
   public standard = environment.platformUrl + '/standard';
   public deviceRecord = environment.platformUrl + '/deviceRecord';
   public thicknessSectionPosition = environment.platformUrl + '/thicknessSectionPosition';
+  public thicknessRecord = environment.platformUrl + '/thicknessRecord';
   constructor() {
   }
 }
