@@ -1,7 +1,7 @@
 <app-page-header></app-page-header>
 <ng-container *ngIf="initFinish">
   <nz-card [nzBordered]="false">
-    <div class="search__form">
+    <div class="search-form search-form-bch">
       <sf #sf [schema]="schema" (formSubmit)="submit($event)" [formData]="q" #sf [mode]="'search'">
       </sf>
     </div>

@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { EditComponent } from '../../../common/component/edit-component';
-import { SFSelectWidgetSchema } from '@delon/form';
+import { SFSchema, SFSelectWidgetSchema } from '@delon/form';
 import { InstrumentRecordService } from '../../../../service/instrument-record/instrument-record.service';
 import { ProjectService } from '../../../../service/project/project.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,45 +10,44 @@ import { ALAIN_I18N_TOKEN } from '@delon/theme';
 import { I18NService } from '../../../../core';
 import { ThicknessRecordService } from '../../../../service/thickness-record/thickness-record.service';
 import { DeviceRecordService } from '../../../../service/device-record/device-record.service';
+import { ReportEditComponent } from '../../../common/component/report-edit-component';
 
 @Component({
   selector: 'app-thickness-record-edit',
   templateUrl: './thickness-record-edit.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class ThicknessRecordEditComponent  extends EditComponent implements OnInit {
+export class ThicknessRecordEditComponent extends ReportEditComponent implements OnInit {
   detailPropertys = new Set(['projectUuid', 'thicknessSectionPositionRecordUuid', 'thickness', 'paint', 'rust']);
-  schema = {
+  schema: SFSchema = {
     properties: {
       deviceRecordUuid: {
         type: 'string',
-        enum: [
-          { label: '请选择样机名称-编码', value: '' },
-        ],
+        enum: [],
         default: '',
         ui: {
           i18n: 'deviceRecord.name',
-          widget: 'select',
+          widget: 'cascader',
         } as SFSelectWidgetSchema,
       },
       thickness: { type: 'string', ui: { i18n: 'thicknessRecord.thickness' }, maxLength: 50 },
       paint: { type: 'string', ui: { i18n: 'thicknessRecord.paint' }, maxLength: 50 },
       rust: { type: 'string', ui: { i18n: 'thicknessRecord.rust' }, maxLength: 50 },
     },
-    required: ['projectUuid'],
+    required: ['deviceRecordUuid'],
     ui: {
       spanLabelFixed: 150,
       grid: { span: 12 },
     },
   };
-  initFinish = false;
+
+
   constructor(public thicknessRecordService: ThicknessRecordService, public deviceRecordService: DeviceRecordService,
               public router: Router, public activatedRoute: ActivatedRoute,
               public msg: NzMessageService, public modal: NzModalService,
               @Inject(ALAIN_I18N_TOKEN) public i18NService: I18NService) {
     super(thicknessRecordService, modal, msg, router, i18NService, activatedRoute);
-    deviceRecordService.listAll().subscribe(v => {
+    deviceRecordService.tree().subscribe(v => {
       this.initFinish = true;
       this.commonService.responseWrapperProcess(v, (successData: any[]) => {
         this.deviceRecordProcess(successData, null);
@@ -57,16 +56,14 @@ export class ThicknessRecordEditComponent  extends EditComponent implements OnIn
       });
     });
   }
-  deviceRecordProcess(successData, failureData) {
-    const projects = [{ label: '请选择样机名称-编码', value: '' }];
-    successData.forEach(p => {
-      projects.push({ label:p['name'] + '-' + p['code'], value: p['uuid'] });
-    });
-    this.schema.properties.deviceRecordUuid['enum'] = projects;
-  }
+
   ngOnInit(): void {
     this.listPropertys = ['uuid', ...this.thicknessRecordService.listPropertys];
     super.ngOnInit();
+
   }
 
+  deviceRecordProcess(successData, failureData) {
+    super.deviceRecordProcess(this.schema, successData);
+  }
 }

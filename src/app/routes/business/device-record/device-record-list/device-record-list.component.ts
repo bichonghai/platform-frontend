@@ -22,7 +22,6 @@ export class DeviceRecordListComponent extends ListComponent implements OnInit {
       projectUuid: {
         type: 'string',
         enum: [
-          { label: '请选择项目名称', value: '' },
         ],
         default: '',
         ui: {
@@ -30,8 +29,6 @@ export class DeviceRecordListComponent extends ListComponent implements OnInit {
           widget: 'select',
         } as SFSelectWidgetSchema,
       },
-      name: { type: 'string', ui: { i18n: 'deviceRecord.name' } },
-      code: { type: 'string', ui: { i18n: 'deviceRecord.code' } },
     },
   };
   initFinish = false;
@@ -50,7 +47,7 @@ export class DeviceRecordListComponent extends ListComponent implements OnInit {
 
   projectProcess(successData, failureData) {
     this.initFinish = true;
-    const projects = [{ label: '请选择项目名称', value: '' }];
+    const projects = [];
     const enumProject = {};
     if (successData) {
       successData.forEach(p => {

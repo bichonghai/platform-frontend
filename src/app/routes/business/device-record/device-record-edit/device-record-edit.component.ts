@@ -33,6 +33,7 @@ export class DeviceRecordEditComponent extends EditComponent implements OnInit {
       },
       name: { type: 'string', maxLength: 50, ui: { i18n: 'deviceRecord.name' } },
       code: { type: 'string', maxLength: 50, ui: { i18n: 'deviceRecord.code' } },
+      testDate: { type: 'string', format: 'date', maxLength: 50, ui: { i18n: 'deviceRecord.testDate' } },
       weight: { type: 'number', maxLength: 50, ui: { i18n: 'deviceRecord.weight' } },
       length: { type: 'number', maxLength: 50, ui: { i18n: 'deviceRecord.length' } },
       temperature: { type: 'number', maxLength: 50, ui: { i18n: 'deviceRecord.temperature' } },
@@ -42,7 +43,6 @@ export class DeviceRecordEditComponent extends EditComponent implements OnInit {
       manufacturer: { type: 'string', maxLength: 50, ui: { i18n: 'deviceRecord.manufacturer' } },
       manufactureDate: { type: 'string', format: 'date', maxLength: 50, ui: { i18n: 'deviceRecord.manufactureDate' } },
       testLocation: { type: 'string', maxLength: 50, ui: { i18n: 'deviceRecord.testLocation' } },
-      testDate: { type: 'string', format: 'date', maxLength: 50, ui: { i18n: 'deviceRecord.testDate' } },
     },
     required: ['projectUuid', 'name', 'code'],
     ui: {

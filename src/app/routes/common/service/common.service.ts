@@ -29,7 +29,14 @@ export class CommonService {
       }),
     );
   }
-
+  detailJsonObject(uuid: string): Observable<any> {
+    return this.httpClient.get(this.url + '/detailJsonObject', { params: { 'uuid': uuid } }).pipe(
+      debounceTime(500),
+      catchError((errMsg: Response | any) => {
+        return throwError(errMsg);
+      }),
+    );
+  }
   delete(uuids: string): Observable<any> {
     return this.httpClient.get(this.url + '/delete', { params: { 'deleteseleted': uuids } }).pipe(
       debounceTime(500),

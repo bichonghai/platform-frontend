@@ -39,24 +39,6 @@ export class ListComponent {
     this.st.reload();
   }
 
-  pushOper() {
-    this.columns.push(
-      {
-        title: '操作',
-        buttons: [
-          {
-            i18n: 'menu.operator.detail',
-            click: (item: any) => this.detail(item),
-          },
-          {
-            i18n: 'menu.operator.edit',
-            click: (item: any) => this.edit(item),
-          },
-        ]
-        ,
-      },
-    );
-  }
 
   remove() {
     this.commonService.delete(this.selectedRows.map((i) => i.uuid).join(',')).subscribe(v => {

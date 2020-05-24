@@ -6,7 +6,7 @@ import { SFComponent } from '@delon/form';
 import { I18NService } from '@core';
 
 export class EditComponent {
-  public uuid: string = '';
+  public uuid = '';
   public model: any = {};
   @ViewChild('sf', { static: false }) public sf: SFComponent;
   public listPropertys = [];
@@ -20,13 +20,18 @@ export class EditComponent {
   }
 
   ngOnInit(): void {
+    this.detai();
+  }
+  detai(){
     if (this.uuid && this.uuid.length > 0) {
       this.commonService.detail(this.uuid).subscribe((v: any) => {
         this.commonService.responseWrapperProcess(v, (successData) => {
           this.listPropertys.forEach(v2 => {
             this.model[v2] = successData[v2];
           });
-          this.sf.refreshSchema();
+          if (this.sf) {
+            this.sf.refreshSchema();
+          }
         }, (failData) => {
           this.msg.error('获取信息失败');
         });
@@ -34,7 +39,6 @@ export class EditComponent {
       });
     }
   }
-
   submit(event) {
     this.commonService.addOrUpdate(event).subscribe(v => {
       this.commonService.responseWrapperProcess(v, (successData) => {

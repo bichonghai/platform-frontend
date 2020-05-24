@@ -15,8 +15,10 @@ export  class DetailComponent {
       this.uuid = v.uuid;
     });
   }
-
   ngOnInit(): void {
+    this.detail();
+  }
+  detail(): void {
     this.commonService.detail(this.uuid).subscribe((v: ResponseWrapper) => {
       this.commonService.responseWrapperProcess(v, (successData) => {
         this.detailPropertys.forEach(key => {
