@@ -1,5 +1,5 @@
 <form nz-form [formGroup]="form" (ngSubmit)="_submitForm()" [nzLayout]="'vertical'">
-  <nz-table formArrayName="items" [nzData]="items.value" [nzShowPagination]="false" [nzScroll]="{ x: '800px' }">
+  <nz-table formArrayName="items" [nzData]="items.value" [nzShowPagination]="false" [nzScroll]="showScroll">
     <thead>
     <tr>
       <th  nzWidth="120px"> {{'instrumentRecord.name' | translate }}</th>
@@ -9,7 +9,7 @@
       <th  nzWidth="90px">{{'instrumentRecord.operator' | translate }}</th>
       <th  nzWidth="90px">{{'instrumentRecord.dataCollation' | translate }}</th>
       <th  nzWidth="90px">{{'instrumentRecord.dataAnalysis' | translate }}</th>
-      <th  nzWidth="110px"nzRight>操作</th>
+      <th  nzWidth="110px"nzRight *ngIf="showOper">操作</th>
     </tr>
     </thead>
     <tbody>
@@ -57,7 +57,7 @@
             </span>
       </td>
 
-      <td nzRight>
+      <td nzRight  *ngIf="showOper">
             <span *ngIf="editIndex !== i">
               <a (click)="edit(i)">编辑</a>
               <nz-divider nzType="vertical"></nz-divider>
@@ -72,7 +72,7 @@
     </tr>
     </tbody>
   </nz-table>
-  <button *ngIf="editIndex === -1" nz-button [nzType]="'dashed'" (click)="add()" nzBlock class="mt-md">
+  <button *ngIf="editIndex === -1 && showOper" nz-button [nzType]="'dashed'" (click)="add()" nzBlock class="mt-md">
     <i nz-icon nzType="plus"></i>
     <span>新增成员</span>
   </button>

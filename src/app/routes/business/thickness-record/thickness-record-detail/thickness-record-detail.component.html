@@ -1,7 +1,24 @@
 <app-page-header></app-page-header>
 <nz-card [nzHoverable]="true" [nzBordered]="false">
   <sv-container labelWidth="150" [col]="2">
-    <sv label="{{item.label| translate}}" *ngFor="let item of propertys">{{item.value}}</sv>
+    <ng-container *ngFor="let item of propertys">
+      <ng-container *ngIf="item.label!=='thicknessRecord.instrumentRecords'">
+        <sv label="{{item.label| translate}}"  >{{item.value}}</sv>
+      </ng-container>
+      <ng-container *ngIf="item.label==='thicknessRecord.instrumentRecords'">
+        <sv label="{{item.label| translate}}"  [col]="1" >
+          <nz-col class="ant-form-item-control-wrapper"   *ngIf="item.label==='thicknessRecord.instrumentRecords'">
+            <div class="ant-form-item-control">
+              <nz-row class="sf__array-container">
+                <nz-card>
+                  <app-instrument-record-list-common [ngModel]="item.value" [showOper]="false" showScroll=""></app-instrument-record-list-common>
+                </nz-card>
+              </nz-row>>
+            </div>
+          </nz-col>
+        </sv>
+      </ng-container>
+    </ng-container>
   </sv-container>
 </nz-card>
 <div nz-row nzJustify="space-around" nzAlign="middle">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import format from 'date-fns/format';
 import { DefaultControlValueAccessor } from '../../../common/component/default-control-value-accessor';
@@ -14,7 +14,10 @@ export class InstrumentRecordListCommonComponent extends DefaultControlValueAcce
   editIndex = -1;
   editObj = {};
   fromatDate = 'yyyy-MM-dd';
-
+  @Input()
+  showOper = true;
+  @Input()
+  showScroll = { x: '800px' };
   constructor(private fb: FormBuilder) {
     super();
   }
