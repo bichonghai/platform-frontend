@@ -1,8 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { EditComponent } from '../../../common/component/edit-component';
-import { SFSchema, SFSelectWidgetSchema } from '@delon/form';
-import { InstrumentRecordService } from '../../../../service/instrument-record/instrument-record.service';
-import { ProjectService } from '../../../../service/project/project.service';
+import { SFArrayWidgetSchema, SFSchema, SFSelectWidgetSchema } from '@delon/form';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -33,15 +30,50 @@ export class ThicknessRecordEditComponent extends ReportEditComponent implements
       thickness: { type: 'string', ui: { i18n: 'thicknessRecord.thickness' }, maxLength: 50 },
       paint: { type: 'string', ui: { i18n: 'thicknessRecord.paint' }, maxLength: 50 },
       rust: { type: 'string', ui: { i18n: 'thicknessRecord.rust' }, maxLength: 50 },
+      instrumentRecords: {
+        type: 'array',
+        title: '检测仪器',
+        maxItems: 14,
+        items: {
+          type: 'object',
+          properties: {
+            name: {
+              type: 'string',
+              ui: { i18n: 'instrumentRecord.name' },
+              maxLength: 50,
+            },
+            code: { type: 'string', ui: { i18n: 'instrumentRecord.code' }, maxLength: 50 },
+            type: { type: 'string', ui: { i18n: 'instrumentRecord.type' }, maxLength: 50 },
+            validityDate: {
+              type: 'string',
+              format: 'date',
+              ui: { i18n: 'instrumentRecord.validityDate' },
+              maxLength: 50,
+              grid: { span: 24 },
+            },
+            operator: { type: 'string', ui: { i18n: 'instrumentRecord.operator' }, maxLength: 50 },
+            dataCollation: {
+              type: 'string',
+              ui: { i18n: 'instrumentRecord.dataCollation' },
+              maxLength: 50,
+            },
+            dataAnalysis: {
+              type: 'string',
+              ui: { i18n: 'instrumentRecord.dataAnalysis' },
+              maxLength: 50,
+            },
+          },
+          required: ['name'],
+        },
+        ui: {  grid: { span: 24 } } as SFArrayWidgetSchema,
+      },
     },
     required: ['deviceRecordUuid'],
     ui: {
-      spanLabelFixed: 150,
+      spanLabelFixed: 120,
       grid: { span: 12 },
     },
   };
-
-
   constructor(public thicknessRecordService: ThicknessRecordService, public deviceRecordService: DeviceRecordService,
               public router: Router, public activatedRoute: ActivatedRoute,
               public msg: NzMessageService, public modal: NzModalService,
@@ -57,10 +89,49 @@ export class ThicknessRecordEditComponent extends ReportEditComponent implements
     });
   }
 
+  detail() {
+    if (this.uuid && this.uuid.length > 0) {
+      this.commonService.detailJsonObject(this.uuid).subscribe((v: any) => {
+        this.commonService.responseWrapperProcess(v, (successData) => {
+          this.listPropertys.forEach(v2 => {
+            this.model[v2] = successData[v2];
+          });
+          if (this.sf) {
+            this.sf.refreshSchema();
+          }
+        }, (failData) => {
+          this.msg.error('获取信息失败');
+        });
+
+      });
+    }
+  }
+
+  submit(event) {
+    this.commonService.addOrUpdate(event).subscribe(v => {
+      this.commonService.responseWrapperProcess(v, (successData) => {
+        this.modal.success({
+          nzTitle: '',
+          nzContent: '操作成功',
+          nzMask: false,
+          nzOnOk: () => {
+            this.router.navigateByUrl(this.path + '/list');
+          },
+        });
+      }, (failureData) => {
+        this.commonService.formErrorProcess(failureData, this.sf);
+      });
+    });
+  }
+
   ngOnInit(): void {
-    this.listPropertys = ['uuid', ...this.thicknessRecordService.listPropertys];
+    this.listPropertys = ['uuid', ...this.thicknessRecordService.editPropertys];
     super.ngOnInit();
 
+  }
+
+  onChangeModel(e) {
+    console.log(e);
   }
 
   deviceRecordProcess(successData, failureData) {

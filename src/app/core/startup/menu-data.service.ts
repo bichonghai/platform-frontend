@@ -76,12 +76,6 @@ export class MenuDataService {
               'i18n': 'menu.deviceRecord',
             },
             {
-              'key': 'instrumentRecord',
-              'text': '仪器报告',
-              'link': '/business/instrument-record',
-              'i18n': 'menu.instrumentRecord',
-            },
-            {
               'key': 'thicknessRecord',
               'text': '样机表面报告',
               'link': '/business/thickness-record',

@@ -1,0 +1,79 @@
+<form nz-form [formGroup]="form" (ngSubmit)="_submitForm()" [nzLayout]="'vertical'">
+  <nz-table formArrayName="items" [nzData]="items.value" [nzShowPagination]="false" [nzScroll]="{ x: '800px' }">
+    <thead>
+    <tr>
+      <th  nzWidth="120px"> {{'instrumentRecord.name' | translate }}</th>
+      <th  nzWidth="120px">{{'instrumentRecord.type' | translate }}</th>
+      <th  nzWidth="120px">{{'instrumentRecord.code' | translate }}</th>
+      <th  nzWidth="120px">{{'instrumentRecord.validityDate' | translate }}</th>
+      <th  nzWidth="90px">{{'instrumentRecord.operator' | translate }}</th>
+      <th  nzWidth="90px">{{'instrumentRecord.dataCollation' | translate }}</th>
+      <th  nzWidth="90px">{{'instrumentRecord.dataAnalysis' | translate }}</th>
+      <th  nzWidth="110px"nzRight>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of items.controls; let i = index" [formGroupName]="i">
+      <td >
+        <span *ngIf="editIndex !== i">{{ items.value[i].name }}</span>
+        <span *ngIf="editIndex === i" nz-form-control nzErrorTip="请输入成员姓名">
+              <input nz-input formControlName="name"/>
+            </span>
+      </td>
+      <td>
+        <span *ngIf="editIndex !== i">{{ items.value[i].type }}</span>
+        <span *ngIf="editIndex === i" nz-form-control nzErrorTip="请输入工号">
+              <input nz-input formControlName="type"/>
+            </span>
+      </td>
+      <td>
+        <span *ngIf="editIndex !== i">{{ items.value[i].code }}</span>
+        <span *ngIf="editIndex === i" nz-form-control nzErrorTip="请输入所属部门">
+              <input nz-input formControlName="code"/>
+            </span>
+      </td>
+      <td>
+        <span *ngIf="editIndex !== i">{{ items.value[i].validityDate }}</span>
+        <span *ngIf="editIndex === i" nz-form-control nzErrorTip="请输入所属部门">
+          <nz-date-picker [nzFormat]="fromatDate" formControlName="validityDate"></nz-date-picker>
+            </span>
+      </td>
+      <td>
+        <span *ngIf="editIndex !== i">{{ items.value[i].operator }}</span>
+        <span *ngIf="editIndex === i" nz-form-control nzErrorTip="请输入所属部门">
+              <input nz-input formControlName="operator" />
+            </span>
+      </td>
+      <td>
+        <span *ngIf="editIndex !== i">{{ items.value[i].dataCollation }}</span>
+        <span *ngIf="editIndex === i" nz-form-control nzErrorTip="请输入所属部门">
+              <input nz-input formControlName="dataCollation"/>
+            </span>
+      </td>
+      <td>
+        <span *ngIf="editIndex !== i">{{ items.value[i].dataAnalysis }}</span>
+        <span *ngIf="editIndex === i" nz-form-control nzErrorTip="请输入所属部门">
+              <input nz-input formControlName="dataAnalysis"/>
+            </span>
+      </td>
+
+      <td nzRight>
+            <span *ngIf="editIndex !== i">
+              <a (click)="edit(i)">编辑</a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a nz-popconfirm nzPopconfirmTitle="是否要删除此行？" (nzOnConfirm)="del(i)">删除</a>
+            </span>
+        <span *ngIf="editIndex === i">
+              <a (click)="save(i)">保存</a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a nz-popconfirm nzPopconfirmTitle="是否要取消操作？" (nzOnConfirm)="cancel(i)">取消</a>
+            </span>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+  <button *ngIf="editIndex === -1" nz-button [nzType]="'dashed'" (click)="add()" nzBlock class="mt-md">
+    <i nz-icon nzType="plus"></i>
+    <span>新增成员</span>
+  </button>
+</form>

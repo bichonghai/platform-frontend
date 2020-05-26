@@ -15,7 +15,9 @@ import { LayoutModule } from '../../../layout/layout.module';
     CommonModule,
     SharedModule,
     LayoutModule,
-    InstrumentRecordRoutingModule
-  ]
+    InstrumentRecordRoutingModule,
+  ],
+  exports: [],
 })
-export class InstrumentRecordModule { }
+export class InstrumentRecordModule {
+}

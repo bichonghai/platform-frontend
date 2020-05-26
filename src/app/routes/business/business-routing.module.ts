@@ -23,11 +23,6 @@ const routes: Routes = [
     loadChildren: () => import('./device-record/device-record.module').then(m => m.DeviceRecordModule)
   },
   {
-    path: 'instrument-record',
-    canActivate: [],
-    loadChildren: () => import('./instrument-record/instrument-record.module').then(m => m.InstrumentRecordModule)
-  },
-  {
     path: 'thickness-section-position',
     canActivate: [],
     loadChildren: () => import('./thickness-section-position/thickness-section-position.module').then(m => m.ThicknessSectionPositionModule)
