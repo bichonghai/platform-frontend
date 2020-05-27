@@ -39,13 +39,7 @@ export class MenuDataService {
           'text': '业务管理',
           'i18n': 'menu.business',
           'icon': 'anticon-dashboard',
-          'children': [
-            {
-              'key': 'instrument',
-              'text': '仪器报告',
-              'link': '/business/instrument',
-              'i18n': 'menu.instrument',
-            }, {
+          'children': [{
               'key': 'standard',
               'text': '标准管理',
               'link': '/business/standard',

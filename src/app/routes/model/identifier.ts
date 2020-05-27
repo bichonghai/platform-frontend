@@ -1,3 +1,3 @@
 export class Identifier {
-  uuid:string;
+  uuid: string;
 }

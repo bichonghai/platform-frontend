@@ -2,18 +2,23 @@
 <nz-card [nzHoverable]="true" [nzBordered]="false">
   <sv-container labelWidth="150" [col]="2">
     <ng-container *ngFor="let item of propertys">
-      <ng-container *ngIf="item.label!=='thicknessRecord.instrumentRecords'">
+      <ng-container *ngIf="item.label!=='thicknessRecord.instrumentDetails' && item.label!=='thicknessRecord.thicknessDetails'">
         <sv label="{{item.label| translate}}"  >{{item.value}}</sv>
       </ng-container>
-      <ng-container *ngIf="item.label==='thicknessRecord.instrumentRecords'">
+      <ng-container *ngIf="item.label==='thicknessRecord.instrumentDetails'">
         <sv label="{{item.label| translate}}"  [col]="1" >
-          <nz-col class="ant-form-item-control-wrapper"   *ngIf="item.label==='thicknessRecord.instrumentRecords'">
+          <nz-col class="ant-form-item-control-wrapper">
             <div class="ant-form-item-control">
-              <nz-row class="sf__array-container">
-                <nz-card>
-                  <app-instrument-record-list-common [ngModel]="item.value" [showOper]="false" showScroll=""></app-instrument-record-list-common>
-                </nz-card>
-              </nz-row>>
+              <app-instrument-record-list-common [ngModel]="item.value" [showOper]="false" showScroll=""></app-instrument-record-list-common>
+            </div>
+          </nz-col>
+        </sv>
+      </ng-container>
+      <ng-container *ngIf="item.label==='thicknessRecord.thicknessDetails'">
+        <sv label="{{item.label| translate}}"  [col]="1" >
+          <nz-col class="ant-form-item-control-wrapper">
+            <div class="ant-form-item-control">
+              <app-common-table-detail [value]="item.value.value" [key]="item.value.label"  showScroll="" [className]="'thicknessRecord'"></app-common-table-detail>
             </div>
           </nz-col>
         </sv>

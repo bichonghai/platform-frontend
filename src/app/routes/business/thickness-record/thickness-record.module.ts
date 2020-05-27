@@ -8,6 +8,7 @@ import { ThicknessRecordDetailComponent } from './thickness-record-detail/thickn
 import { SharedModule } from '../../../shared';
 import { LayoutModule } from '../../../layout/layout.module';
 import { InstrumentRecordListCommonModule } from '../instrument-record-list-common/instrument-record-list-common.module';
+import { CommonBusinessModule } from '../common-business/common-business.module';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { InstrumentRecordListCommonModule } from '../instrument-record-list-comm
     CommonModule,
     SharedModule,
     LayoutModule,
+    CommonBusinessModule,
     InstrumentRecordListCommonModule,
     ThicknessRecordRoutingModule
   ]

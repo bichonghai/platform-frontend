@@ -1,0 +1,14 @@
+<nz-table   [nzData]="value"  [nzShowPagination]="false" [nzScroll]="showScroll">
+  <thead>
+  <tr >
+    <th  nzWidth="120px" *ngFor="let item of key"> {{className+'.'+item | translate }}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of value">
+    <td *ngFor="let item2 of key" >
+      <span>{{ item[item2] }}</span>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

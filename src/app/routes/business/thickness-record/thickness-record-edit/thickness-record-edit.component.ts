@@ -29,19 +29,7 @@ export class ThicknessRecordEditComponent extends ReportEditComponent implements
           widget: 'cascader',
         } as SFSelectWidgetSchema,
       },
-      thicknessSectionPositionRecordUuid: {
-        type: 'string',
-        enum: [],
-        default: '',
-        ui: {
-          i18n: 'thicknessRecord.thicknessSectionPositionRecordUuid',
-          widget: 'cascader',
-        } as SFSelectWidgetSchema,
-      },
-      thickness: { type: 'string', ui: { i18n: 'thicknessRecord.thickness' }, maxLength: 50 },
-      paint: { type: 'string', ui: { i18n: 'thicknessRecord.paint' }, maxLength: 50 },
-      rust: { type: 'string', ui: { i18n: 'thicknessRecord.rust' }, maxLength: 50 },
-      instrumentRecords: {
+      instrumentDetails: {
         type: 'array',
         title: '检测仪器',
         maxItems: 14,
@@ -74,12 +62,34 @@ export class ThicknessRecordEditComponent extends ReportEditComponent implements
               maxLength: 50,
             },
           },
-          required: ['name'],
         },
-        ui: { i18n: 'thicknessRecord.instrumentRecords' ,grid: { span: 24 } } as SFArrayWidgetSchema,
+        ui: { i18n: 'thicknessRecord.instrumentDetails', grid: { span: 24 } } as SFArrayWidgetSchema,
+      },
+      thicknessDetails: {
+        type: 'array',
+        title: '表面报告',
+        maxItems: 14,
+        items: {
+          type: 'object',
+          properties: {
+            thicknessSectionPositionRecordUuid: {
+              type: 'string',
+              enum: [],
+              default: '',
+              ui: {
+                i18n: 'thicknessRecord.thicknessSectionPositionRecordUuid',
+                widget: 'cascader',
+              } as SFSelectWidgetSchema,
+            },
+            thickness: { type: 'string', ui: { i18n: 'thicknessRecord.thickness' }, maxLength: 50 },
+            paint: { type: 'string', ui: { i18n: 'thicknessRecord.paint' }, maxLength: 50 },
+            rust: { type: 'string', ui: { i18n: 'thicknessRecord.rust' }, maxLength: 50 },
+          },
+        },
+        ui: { i18n: 'thicknessRecord.thicknessDetails', grid: { span: 24 } } as SFArrayWidgetSchema,
       },
     },
-    required: ['deviceRecordUuid'],
+    required: [],
     ui: {
       spanLabelFixed: 120,
       grid: { span: 12 },
@@ -132,7 +142,7 @@ export class ThicknessRecordEditComponent extends ReportEditComponent implements
 
   thicknessSectionPositionProcess(successData) {
     if (successData) {
-      this.schema.properties.thicknessSectionPositionRecordUuid['enum'] = successData;
+      this.schema.properties.thicknessDetails.items.properties.thicknessSectionPositionRecordUuid['enum'] = successData;
     }
   }
 

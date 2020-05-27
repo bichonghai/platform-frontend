@@ -12,7 +12,7 @@ export class ThicknessRecordService extends CommonService {
     super(servicePathService.thicknessRecord, httpClient);
   }
 
-  detailPropertys = new Set(['deviceRecordUuid', 'thicknessSectionPositionRecordUuid', 'thickness', 'paint', 'rust', 'instrumentRecords']);
-  listPropertys = new Set(['deviceRecordUuid', 'thicknessSectionPositionRecordUuid', 'thickness', 'paint', 'rust']);
-  editPropertys = new Set(['deviceRecordUuid', 'thicknessSectionPositionRecordUuid', 'thickness', 'paint', 'rust', 'instrumentRecords']);
+  detailPropertys = new Set(['deviceRecordUuid', 'thicknessDetails', 'instrumentDetails']);
+  listPropertys = new Set(['deviceRecordUuid', 'thicknessDetailsSize', 'instrumentDetailsSize']);
+  editPropertys = new Set(['deviceRecordUuid', 'thicknessDetails', 'instrumentDetails']);
 }

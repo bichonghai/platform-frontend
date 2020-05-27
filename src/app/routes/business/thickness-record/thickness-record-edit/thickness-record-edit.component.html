@@ -1,8 +1,5 @@
 <app-page-header></app-page-header>
 <ng-container *ngIf="initFinish">
   <sf #sf [schema]="schema" (formSubmit)="submit($event)"   [formData]="model" >
-<!--    <ng-template sf-template="custom" let-me let-ui="ui" let-schema="schema">
-      <app-instrument-record-list-common [(ngModel)]="me.formProperty.value"  (ngModelChange)="onChangeModel()"></app-instrument-record-list-common>
-    </ng-template>-->
   </sf>
 </ng-container>
