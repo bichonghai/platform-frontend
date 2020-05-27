@@ -32,13 +32,13 @@ export class UserLoginComponent implements OnDestroy {
     private startupSrv: StartupService,
     public http: _HttpClient,
     public msg: NzMessageService,
-    private menuDataService:MenuDataService,
+    private menuDataService: MenuDataService,
     private userService: UserService,
   ) {
     this.form = fb.group({
-      userName: [null, [Validators.required, Validators.minLength(4)]],
+      userName: [null, [Validators.required]],
       password: [null, Validators.required],
-      mobile: [null, [Validators.required, Validators.pattern(/^1\d{10}$/)]],
+      mobile: [null, [Validators.required]],
       captcha: [null, [Validators.required]],
       remember: [true],
     });
@@ -122,7 +122,7 @@ export class UserLoginComponent implements OnDestroy {
         // 清空路由复用信息
         this.reuseTabService.clear();
         // 设置用户Token信息
-        let user = successData;
+        const user = successData;
         this.menuDataService.permissionsLoginUser = deepCopy(user['permissions']);
         user['permissions'] = [];
         this.tokenService.set(user);
@@ -135,14 +135,14 @@ export class UserLoginComponent implements OnDestroy {
           this.router.navigateByUrl(url);
         });
       }, (failData) => {
-        let details:any[]=failData["details"];
-        if(details){
-          details.forEach(v=>{
-            Object.values(v).forEach(o=>{
-              this.error =  this.error+o;
-            })
-            v[""]
-          })
+        const details: any[] = failData['details'];
+        if (details) {
+          details.forEach(v => {
+            Object.values(v).forEach(o => {
+              this.error = this.error + o;
+            });
+            v[''];
+          });
         }
       });
     });
