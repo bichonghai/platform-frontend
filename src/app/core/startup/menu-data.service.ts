@@ -75,6 +75,12 @@ export class MenuDataService {
               'link': '/business/thickness-record',
               'i18n': 'menu.thicknessRecord',
             },
+            {
+              'key': 'strengthStaticLoadRecord',
+              'text': '静载强度报告',
+              'link': '/business/strength-static-load-record',
+              'i18n': 'menu.strengthStaticLoadRecord',
+            },
           ],
         },
       ],

@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'edit',
     canActivate: [],
     component: ThicknessRecordEditComponent,
-    data: { title18n: 'menu.operator.edit', guard: 'thicknessSectionPosition:edit' },
+    data: { title18n: 'menu.operator.edit', guard: 'thickness:edit' },
   },
 ];
 @NgModule({

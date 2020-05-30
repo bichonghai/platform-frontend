@@ -1,0 +1,31 @@
+<app-page-header></app-page-header>
+<nz-card [nzHoverable]="true" [nzBordered]="false">
+  <sv-container labelWidth="150" [col]="2">
+    <ng-container *ngFor="let item of propertys">
+      <ng-container *ngIf="item.label!=='strengthStaticLoadRecord.instrumentDetails' && item.label!=='strengthStaticLoadRecord.workingDetails'  && item.label!=='strengthStaticLoadRecord.itemDetails'">
+        <sv label="{{item.label| translate}}"  >{{item.value}}</sv>
+      </ng-container>
+      <ng-container *ngIf="item.label==='strengthStaticLoadRecord.instrumentDetails'">
+        <sv label="{{item.label| translate}}"  [col]="1" >
+          <nz-col class="ant-form-item-control-wrapper">
+            <div class="ant-form-item-control">
+              <app-instrument-record-list-common [ngModel]="item.value" [showOper]="false" showScroll=""></app-instrument-record-list-common>
+            </div>
+          </nz-col>
+        </sv>
+      </ng-container>
+      <ng-container *ngIf="item.label==='strengthStaticLoadRecord.workingDetails' || item.label==='strengthStaticLoadRecord.itemDetails'">
+        <sv label="{{item.label| translate}}"  [col]="1" >
+          <nz-col class="ant-form-item-control-wrapper">
+            <div class="ant-form-item-control">
+              <app-common-table-detail [value]="item.value.value" [key]="item.value.label"  showScroll="" [className]="'strengthStaticLoadRecord'"></app-common-table-detail>
+            </div>
+          </nz-col>
+        </sv>
+      </ng-container>
+    </ng-container>
+  </sv-container>
+</nz-card>
+<div nz-row nzJustify="space-around" nzAlign="middle">
+  <div nz-col nzSpan="4"><button nz-button nzType="primary"  (click)="back()">{{'menu.operator.backlist'|translate}}</button></div>
+</div>

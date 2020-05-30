@@ -32,6 +32,11 @@ const routes: Routes = [
     canActivate: [],
     loadChildren: () => import('./thickness-record/thickness-record.module').then(m => m.ThicknessRecordModule)
   },
+  {
+    path: 'strength-static-load-record',
+    canActivate: [],
+    loadChildren: () => import('./strength-static-load-record/strength-static-load-record.module').then(m => m.StrengthStaticLoadRecordModule)
+  },
 ];
 
 @NgModule({

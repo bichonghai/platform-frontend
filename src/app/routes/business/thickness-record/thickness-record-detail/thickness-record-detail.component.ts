@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ThicknessRecordService } from '../../../../service/thickness-record/thickness-record.service';
 import { ReportDetailComponent } from '../../../common/component/report-detail-component';
-import { ResponseWrapper } from '../../../common/dto/response-wrapper';
 import { zip } from 'rxjs';
-import { ThicknessSectionPositionService } from '../../../../service/thickness-section-position/thickness-section-position.service';
-import { SFSelectWidgetSchema } from '@delon/form';
 
 @Component({
   selector: 'app-thickness-record-detail',
@@ -14,13 +11,13 @@ import { SFSelectWidgetSchema } from '@delon/form';
 })
 export class ThicknessRecordDetailComponent extends ReportDetailComponent implements OnInit {
 
-  constructor(public thicknessRecordService: ThicknessRecordService, public thicknessSectionPositionService: ThicknessSectionPositionService,
+  constructor(public thicknessRecordService: ThicknessRecordService,
               public router: Router, public activatedRoute: ActivatedRoute) {
     super(thicknessRecordService, router, activatedRoute, thicknessRecordService.detailPropertys, 'thicknessRecord');
   }
 
   detail(): void {
-    zip(this.commonService.detailJsonObject(this.uuid), this.thicknessSectionPositionService.listAll()).subscribe(([thicknessdData, thicknessSectionPositionData]) => {
+    zip(this.commonService.detailJsonObject(this.uuid)).subscribe(([thicknessdData]) => {
       this.commonService.responseWrapperProcess(thicknessdData, (successData: any[]) => {
         this.detailPropertys.forEach(key => {
           if (key === 'deviceRecordUuid') {
@@ -36,11 +33,6 @@ export class ThicknessRecordDetailComponent extends ReportDetailComponent implem
             this.propertys.push({ label: this.i18nPrefix + '.' + key, value: successData[key] });
           }
         });
-      }, (failData) => {
-
-      });
-      this.commonService.responseWrapperProcess(thicknessSectionPositionData, (successData: any[]) => {
-
       }, (failData) => {
 
       });
