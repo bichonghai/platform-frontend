@@ -70,7 +70,7 @@ export class StrengthStaticLoadRecordEditComponent  extends ReportEditComponent 
         items: {
           type: 'object',
           properties: {
-            workingDetail: { type: 'string', ui: { i18n: 'strengthStaticLoadRecord.workingDetail', widget: 'textarea' }, maxLength: 200 },
+            workingDetail: { type: 'string', ui: { i18n: 'strengthStaticLoadRecord.workingDetail', widget: 'textarea',  autosize: { minRows: 2, maxRows: 6 } }, maxLength: 200 },
           },
         },
         ui: { i18n: 'strengthStaticLoadRecord.workingDetails', grid: { span: 24 } } as SFArrayWidgetSchema,
