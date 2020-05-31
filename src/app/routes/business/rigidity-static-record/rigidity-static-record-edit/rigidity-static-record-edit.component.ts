@@ -9,6 +9,7 @@ import { ALAIN_I18N_TOKEN } from '@delon/theme';
 import { I18NService } from '../../../../core';
 import { zip } from 'rxjs';
 import { RigidityStaticRecordService } from '../../../../service/rigidity-static-record/rigidity-static-record.service';
+import { TableWidgetComponent } from '../../common-business/table-widget/table-widget.component';
 
 @Component({
   selector: 'app-rigidity-static-record-edit',
@@ -43,39 +44,40 @@ export class RigidityStaticRecordEditComponent extends ReportEditComponent imple
           properties: {
             number: {
               type: 'number',
-              ui: { i18n: 'rigidityStaticRecord.number', spanControl: 6, spanLabel: 6 },
+              ui: { i18n: 'rigidityStaticRecord.number', spanControl: 8, spanLabel: 8 },
               maxLength: 50,
             },
             point: {
               type: 'number',
-              ui: { i18n: 'rigidityStaticRecord.point', spanControl: 6, spanLabel: 6 },
+              ui: { i18n: 'rigidityStaticRecord.point', spanControl: 8, spanLabel: 8 },
               maxLength: 50,
             },
             leftTrolley: {
               type: 'number',
-              ui: { i18n: 'rigidityStaticRecord.leftTrolley', spanControl: 6, spanLabel: 6 },
+              ui: { i18n: 'rigidityStaticRecord.leftTrolley', spanControl: 8, spanLabel: 8 },
               maxLength: 50,
             },
             rightTrolley: {
               type: 'number',
-              ui: { i18n: 'rigidityStaticRecord.rightTrolley', spanControl: 6, spanLabel: 6 },
+              ui: { i18n: 'rigidityStaticRecord.rightTrolley', spanControl: 8, spanLabel: 8 },
               maxLength: 50,
             },
             leftTrail: {
               type: 'number',
-              ui: { i18n: 'rigidityStaticRecord.leftTrail', spanControl: 6, spanLabel: 6 },
+              ui: { i18n: 'rigidityStaticRecord.leftTrail', spanControl: 8, spanLabel: 8 },
               maxLength: 50,
             },
             rightTrail: {
               type: 'number',
-              ui: { i18n: 'rigidityStaticRecord.rightTrail', spanControl: 6, spanLabel: 6 },
+              ui: { i18n: 'rigidityStaticRecord.rightTrail', spanControl: 8, spanLabel: 8 },
               maxLength: 50,
             },
           },
         },
         ui: {
           i18n: 'rigidityStaticRecord.workingDetails',
-          grid: { span: 24, arraySpan: 6 },
+          widget: TableWidgetComponent.KEY,
+          grid: { span: 24, arraySpan: 8 },
         } as SFArrayWidgetSchema,
       },
     },
