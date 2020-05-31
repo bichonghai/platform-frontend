@@ -44,32 +44,32 @@ export class RigidityStaticRecordEditComponent extends ReportEditComponent imple
           properties: {
             number: {
               type: 'number',
-              ui: { i18n: 'rigidityStaticRecord.number', spanControl: 8, spanLabel: 8 },
+              ui: { i18n: 'rigidityStaticRecord.number' },
               maxLength: 50,
             },
             point: {
               type: 'number',
-              ui: { i18n: 'rigidityStaticRecord.point', spanControl: 8, spanLabel: 8 },
+              ui: { i18n: 'rigidityStaticRecord.point'  },
               maxLength: 50,
             },
             leftTrolley: {
               type: 'number',
-              ui: { i18n: 'rigidityStaticRecord.leftTrolley', spanControl: 8, spanLabel: 8 },
+              ui: { i18n: 'rigidityStaticRecord.leftTrolley'  },
               maxLength: 50,
             },
             rightTrolley: {
               type: 'number',
-              ui: { i18n: 'rigidityStaticRecord.rightTrolley', spanControl: 8, spanLabel: 8 },
+              ui: { i18n: 'rigidityStaticRecord.rightTrolley'  },
               maxLength: 50,
             },
             leftTrail: {
               type: 'number',
-              ui: { i18n: 'rigidityStaticRecord.leftTrail', spanControl: 8, spanLabel: 8 },
+              ui: { i18n: 'rigidityStaticRecord.leftTrail'  },
               maxLength: 50,
             },
             rightTrail: {
               type: 'number',
-              ui: { i18n: 'rigidityStaticRecord.rightTrail', spanControl: 8, spanLabel: 8 },
+              ui: { i18n: 'rigidityStaticRecord.rightTrail'  },
               maxLength: 50,
             },
           },
