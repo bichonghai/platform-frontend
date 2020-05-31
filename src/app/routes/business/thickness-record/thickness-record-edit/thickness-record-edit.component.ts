@@ -26,6 +26,7 @@ export class ThicknessRecordEditComponent extends ReportEditComponent implements
         default: '',
         ui: {
           i18n: 'deviceRecord.name',
+          minWidth: 150,
           widget: 'cascader',
         } as SFSelectWidgetSchema,
       },

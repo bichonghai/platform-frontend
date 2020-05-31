@@ -3,7 +3,7 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { DA_SERVICE_TOKEN, ITokenModel, JWTTokenModel, mergeConfig } from '@delon/auth';
@@ -12,11 +12,15 @@ import { AlainAuthConfig, AlainConfigService } from '@delon/util';
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
   protected model: ITokenModel;
-  constructor(@Optional() protected injector: Injector) {}
+
+  constructor(@Optional() protected injector: Injector) {
+  }
+
   isAuth(options: AlainAuthConfig): boolean {
     this.model = this.injector.get(DA_SERVICE_TOKEN).get<JWTTokenModel>(JWTTokenModel);
     return this.CheckJwt(this.model as JWTTokenModel, options.token_exp_offset!);
   }
+
   CheckJwt(model: JWTTokenModel, offset: number): boolean {
     return model != null && !!model.token && !model.isExpired(offset);
   }
@@ -28,11 +32,17 @@ export class JwtInterceptor implements HttpInterceptor {
       },
     });
   }
+
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const options = mergeConfig(this.injector.get(AlainConfigService));
-    if (this.isAuth(options)) {
-      request =this.setReq(request);
+    try {
+      if (this.isAuth(options)) {
+        request = this.setReq(request);
+      }
+    } catch (e) {
+
     }
+
     return next.handle(request);
   }
 }

@@ -20,7 +20,9 @@ export class DeviceRecordListComponent extends ListComponent implements OnInit {
   schema: SFSchema = {
     properties: {
       projectUuid: {
+        fixed: 'left',
         type: 'string',
+        minWidth: 150,
         enum: [
         ],
         default: '',
@@ -73,6 +75,8 @@ export class DeviceRecordListComponent extends ListComponent implements OnInit {
     this.columns.push(
       {
         title: '操作',
+        fixed: 'right',
+        width: 150,
         buttons: [
           {
             i18n: 'menu.operator.detail',

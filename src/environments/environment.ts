@@ -7,7 +7,7 @@ export const environment = {
   production: false,
   useHash: true,
   hmr: false,
-  platformUrl:'http://172.17.8.190:8888/platform'
+  platformUrl:'http://180.168.96.174:38888/platform'
 };
 
 /*

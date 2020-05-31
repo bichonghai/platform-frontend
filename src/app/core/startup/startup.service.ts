@@ -53,8 +53,8 @@ export class StartupService {
 
   private viaMock(resolve: any, reject: any) {
     const app: any = {
-      name: `ng-alain`,
-      description: `Ng-zorro admin panel front-end framework`,
+      name: `测试报告填报系统`,
+      description: `测试报告填报系统`,
     };
     let user = this.tokenService.get();
     user['avatar'] = './assets/tmp/img/avatar.jpg';

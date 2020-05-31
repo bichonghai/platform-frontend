@@ -3,5 +3,5 @@ export const environment = {
   production: true,
   useHash: true,
   hmr: false,
-  platformUrl:'http://172.17.8.192:8888/platform'
+  platformUrl:'http://172.17.8.192:38888/platform'
 };
