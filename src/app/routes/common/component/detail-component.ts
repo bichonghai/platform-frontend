@@ -14,6 +14,7 @@ export  class DetailComponent {
     this.activatedRoute.queryParams.subscribe((v: Params) => {
       this.uuid = v.uuid;
     });
+    document.body.style.minWidth = '';
   }
   ngOnInit(): void {
     this.detail();

@@ -13,6 +13,7 @@ export class ReportListComponent extends ListComponent {
   constructor(protected  url, protected commonService: CommonService, public modal: NzModalService, public cdr: ChangeDetectorRef, public router: Router, public deviceRecordService: DeviceRecordService) {
     super(url, commonService, modal, cdr, router);
     this.path = this.router.url.substring(0, this.router.url.lastIndexOf('/'));
+    document.body.style.minWidth = '100px';
   }
 
   public get listUrl() {

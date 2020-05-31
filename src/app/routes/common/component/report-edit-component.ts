@@ -6,21 +6,26 @@ import { I18NService } from '@core';
 import { EditComponent } from './edit-component';
 import { SFSchema } from '@delon/form';
 
-export class ReportEditComponent extends  EditComponent{
+export class ReportEditComponent extends EditComponent {
   initFinish = false;
+
   constructor(public commonService: CommonService, public modal: NzModalService, public msg: NzMessageService, public router: Router, public i18NService: I18NService, public activatedRoute: ActivatedRoute) {
     super(commonService, modal, msg, router, i18NService, activatedRoute);
+    document.body.style.minWidth = '600px';
   }
+
   deviceRecordProcess(schema: SFSchema, successData) {
     this.initFinish = true;
     if (successData) {
       schema.properties.deviceRecordUuid['enum'] = successData;
     }
   }
+
   ngOnInit(): void {
     this.detail();
   }
-  detail(){
+
+  detail() {
     if (this.uuid && this.uuid.length > 0) {
       this.commonService.detailJsonObject(this.uuid).subscribe((v: any) => {
         this.commonService.responseWrapperProcess(v, (successData) => {

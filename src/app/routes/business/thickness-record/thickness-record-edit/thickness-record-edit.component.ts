@@ -17,7 +17,6 @@ import { zip } from 'rxjs';
   styles: [],
 })
 export class ThicknessRecordEditComponent extends ReportEditComponent implements OnInit {
-  detailPropertys = new Set(['projectUuid', 'thicknessSectionPositionRecordUuid', 'thickness', 'paint', 'rust']);
   schema: SFSchema = {
     properties: {
       deviceRecordUuid: {
@@ -49,7 +48,6 @@ export class ThicknessRecordEditComponent extends ReportEditComponent implements
               format: 'date',
               ui: { i18n: 'instrumentRecord.validityDate' },
               maxLength: 50,
-              grid: { span: 24 },
             },
             operator: { type: 'string', ui: { i18n: 'instrumentRecord.operator' }, maxLength: 50 },
             dataCollation: {
@@ -64,7 +62,7 @@ export class ThicknessRecordEditComponent extends ReportEditComponent implements
             },
           },
         },
-        ui: { i18n: 'thicknessRecord.instrumentDetails', grid: { span: 24 } } as SFArrayWidgetSchema,
+        ui: { i18n: 'thicknessRecord.instrumentDetails', grid: { arraySpan: 12 } } as SFArrayWidgetSchema,
       },
       thicknessDetails: {
         type: 'array',
@@ -87,13 +85,12 @@ export class ThicknessRecordEditComponent extends ReportEditComponent implements
             rust: { type: 'string', ui: { i18n: 'thicknessRecord.rust' }, maxLength: 50 },
           },
         },
-        ui: { i18n: 'thicknessRecord.thicknessDetails', grid: { span: 24 } } as SFArrayWidgetSchema,
+        ui: { i18n: 'thicknessRecord.thicknessDetails' } as SFArrayWidgetSchema,
       },
     },
     required: [],
     ui: {
       spanLabelFixed: 120,
-      grid: { span: 12 },
     },
   };
 

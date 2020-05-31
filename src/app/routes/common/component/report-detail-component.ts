@@ -6,6 +6,7 @@ import { ResponseWrapper } from '../dto/response-wrapper';
 export class ReportDetailComponent extends DetailComponent {
   constructor(public commonService: CommonService, public router: Router, public activatedRoute: ActivatedRoute, public detailPropertys: Set<string>, public i18nPrefix) {
     super(commonService, router, activatedRoute, detailPropertys, i18nPrefix);
+    document.body.style.minWidth = '600px';
   }
 
   ngOnInit(): void {

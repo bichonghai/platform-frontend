@@ -1,6 +1,6 @@
 <app-page-header></app-page-header>
 <nz-card [nzHoverable]="true" [nzBordered]="false">
-  <sv-container labelWidth="150" [col]="2">
+  <sv-container  [col]="2">
     <ng-container *ngFor="let item of propertys">
       <ng-container *ngIf="item.label!=='thicknessRecord.instrumentDetails' && item.label!=='thicknessRecord.thicknessDetails'">
         <sv label="{{item.label| translate}}"  >{{item.value}}</sv>
