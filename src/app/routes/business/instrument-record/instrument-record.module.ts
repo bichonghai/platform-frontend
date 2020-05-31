@@ -7,6 +7,7 @@ import { InstrumentRecordEditComponent } from './instrument-record-edit/instrume
 import { InstrumentRecordDetailComponent } from './instrument-record-detail/instrument-record-detail.component';
 import { SharedModule } from '../../../shared';
 import { LayoutModule } from '../../../layout/layout.module';
+import { InstrumentRecordListCommonModule } from '../instrument-record-list-common/instrument-record-list-common.module';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { LayoutModule } from '../../../layout/layout.module';
     CommonModule,
     SharedModule,
     LayoutModule,
+    InstrumentRecordListCommonModule,
     InstrumentRecordRoutingModule,
   ],
   exports: [],

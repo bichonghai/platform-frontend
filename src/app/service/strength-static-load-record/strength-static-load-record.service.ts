@@ -12,7 +12,7 @@ export class StrengthStaticLoadRecordService extends CommonService {
     super(servicePathService.strengthStaticLoadRecord, httpClient);
   }
 
-  detailPropertys = new Set(['deviceRecordUuid', 'instrumentDetails', 'itemDetails', 'workingDetails']);
-  listPropertys = new Set(['deviceRecordUuid', 'instrumentDetailsSize', 'itemDetailsSize', 'workingDetailsSize']);
-  editPropertys = new Set(['deviceRecordUuid', 'instrumentDetails', 'itemDetails', 'workingDetails']);
+  detailPropertys = new Set(['deviceRecordUuid', 'itemDetails', 'workingDetails']);
+  listPropertys = new Set(['deviceRecordUuid', 'itemDetailsSize', 'workingDetailsSize']);
+  editPropertys = new Set(['deviceRecordUuid', 'itemDetails', 'workingDetails']);
 }

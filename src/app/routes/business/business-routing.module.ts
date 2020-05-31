@@ -18,14 +18,19 @@ const routes: Routes = [
     loadChildren: () => import('./standard/standard.module').then(m => m.StandardModule)
   },
   {
+    path: 'thickness-section-position',
+    canActivate: [],
+    loadChildren: () => import('./thickness-section-position/thickness-section-position.module').then(m => m.ThicknessSectionPositionModule)
+  },
+  {
     path: 'device-record',
     canActivate: [],
     loadChildren: () => import('./device-record/device-record.module').then(m => m.DeviceRecordModule)
   },
   {
-    path: 'thickness-section-position',
+    path: 'instrument-record',
     canActivate: [],
-    loadChildren: () => import('./thickness-section-position/thickness-section-position.module').then(m => m.ThicknessSectionPositionModule)
+    loadChildren: () => import('./instrument-record/instrument-record.module').then(m => m.InstrumentRecordModule)
   },
   {
     path: 'thickness-record',

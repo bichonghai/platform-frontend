@@ -29,41 +29,6 @@ export class ThicknessRecordEditComponent extends ReportEditComponent implements
           widget: 'cascader',
         } as SFSelectWidgetSchema,
       },
-      instrumentDetails: {
-        type: 'array',
-        title: '检测仪器',
-        maxItems: 14,
-        items: {
-          type: 'object',
-          properties: {
-            name: {
-              type: 'string',
-              ui: { i18n: 'instrumentRecord.name' },
-              maxLength: 50,
-            },
-            code: { type: 'string', ui: { i18n: 'instrumentRecord.code' }, maxLength: 50 },
-            type: { type: 'string', ui: { i18n: 'instrumentRecord.type' }, maxLength: 50 },
-            validityDate: {
-              type: 'string',
-              format: 'date',
-              ui: { i18n: 'instrumentRecord.validityDate' },
-              maxLength: 50,
-            },
-            operator: { type: 'string', ui: { i18n: 'instrumentRecord.operator' }, maxLength: 50 },
-            dataCollation: {
-              type: 'string',
-              ui: { i18n: 'instrumentRecord.dataCollation' },
-              maxLength: 50,
-            },
-            dataAnalysis: {
-              type: 'string',
-              ui: { i18n: 'instrumentRecord.dataAnalysis' },
-              maxLength: 50,
-            },
-          },
-        },
-        ui: { i18n: 'thicknessRecord.instrumentDetails', grid: { arraySpan: 12 } } as SFArrayWidgetSchema,
-      },
       thicknessDetails: {
         type: 'array',
         title: '表面报告',

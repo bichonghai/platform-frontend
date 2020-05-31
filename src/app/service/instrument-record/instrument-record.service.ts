@@ -12,6 +12,8 @@ export class InstrumentRecordService extends CommonService {
     super(servicePathService.instrumentRecord, httpClient);
   }
 
-  detailPropertys = new Set(['projectUuid', 'name', 'deviceRecordName', 'code', 'type', 'validityDate', 'operator', 'dataCollation', 'dataAnalysis']);
-  listPropertys = new Set(['projectUuid', 'name', 'deviceRecordName', 'code', 'type', 'validityDate', 'operator', 'dataCollation', 'dataAnalysis']);
+
+  detailPropertys = new Set(['deviceRecordUuid', 'instrumentDetails']);
+  listPropertys = new Set(['deviceRecordUuid', 'instrumentDetailsSize']);
+  editPropertys = new Set(['deviceRecordUuid', 'instrumentDetails']);
 }

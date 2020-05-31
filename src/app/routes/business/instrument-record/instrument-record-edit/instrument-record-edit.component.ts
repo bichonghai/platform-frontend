@@ -1,13 +1,14 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { EditComponent } from '../../../common/component/edit-component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { ALAIN_I18N_TOKEN } from '@delon/theme';
 import { I18NService } from '../../../../core';
 import { InstrumentRecordService } from '../../../../service/instrument-record/instrument-record.service';
-import { SFSelectWidgetSchema } from '@delon/form';
-import { ProjectService } from '../../../../service/project/project.service';
+import { ReportEditComponent } from '../../../common/component/report-edit-component';
+import { DeviceRecordService } from '../../../../service/device-record/device-record.service';
+import { zip } from 'rxjs';
+import { SFArrayWidgetSchema, SFSchema, SFSelectWidgetSchema } from '@delon/form';
 
 @Component({
   selector: 'app-instrument-record-edit',
@@ -15,60 +16,101 @@ import { ProjectService } from '../../../../service/project/project.service';
   styles: [
   ]
 })
-export class InstrumentRecordEditComponent  extends EditComponent implements OnInit {
-  schema = {
+export class InstrumentRecordEditComponent  extends ReportEditComponent implements OnInit {
+  schema: SFSchema = {
     properties: {
-      projectUuid: {
+      deviceRecordUuid: {
         type: 'string',
-        enum: [
-          { label: '请选择项目名称', value: '' },
-        ],
+        enum: [],
         default: '',
         ui: {
-          i18n: 'deviceRecord.projectUuid',
-          widget: 'select',
+          i18n: 'deviceRecord.name',
+          widget: 'cascader',
         } as SFSelectWidgetSchema,
       },
-      name: { type: 'string', ui: { i18n: 'instrumentRecord.name' }, maxLength: 50 },
-      deviceRecordName: { type: 'string', ui: { i18n: 'instrumentRecord.deviceRecordName' }, maxLength: 50 },
-      code: { type: 'string', ui: { i18n: 'instrumentRecord.code' }, maxLength: 50 },
-      type: { type: 'string', ui: { i18n: 'instrumentRecord.type' }, maxLength: 50 },
-      validityDate: { type: 'string', format: 'date', ui: { i18n: 'instrumentRecord.validityDate' }, maxLength: 50 },
-      operator: { type: 'string', ui: { i18n: 'instrumentRecord.operator' }, maxLength: 50 },
-      dataCollation: { type: 'string', ui: { i18n: 'instrumentRecord.dataCollation' }, maxLength: 50 },
-      dataAnalysis: { type: 'string', ui: { i18n: 'instrumentRecord.dataAnalysis' }, maxLength: 50 },
+      instrumentDetails: {
+        type: 'array',
+        title: '检测仪器',
+        maxItems: 14,
+        items: {
+          type: 'object',
+          properties: {
+            name: {
+              type: 'string',
+              ui: { i18n: 'instrumentRecord.name' },
+              maxLength: 50,
+            },
+            code: { type: 'string', ui: { i18n: 'instrumentRecord.code' }, maxLength: 50 },
+            type: { type: 'string', ui: { i18n: 'instrumentRecord.type' }, maxLength: 50 },
+            validityDate: {
+              type: 'string',
+              format: 'date',
+              ui: { i18n: 'instrumentRecord.validityDate' },
+              maxLength: 50,
+              grid: { span: 24 },
+            },
+            operator: { type: 'string', ui: { i18n: 'instrumentRecord.operator' }, maxLength: 50 },
+            dataCollation: {
+              type: 'string',
+              ui: { i18n: 'instrumentRecord.dataCollation' },
+              maxLength: 50,
+            },
+            dataAnalysis: {
+              type: 'string',
+              ui: { i18n: 'instrumentRecord.dataAnalysis' },
+              maxLength: 50,
+            },
+          },
+        },
+        ui: { i18n: 'strengthStaticLoadRecord.instrumentDetails', grid: { span: 24 } } as SFArrayWidgetSchema,
+      },
     },
-    required: ['name'],
+    required: [],
     ui: {
-      spanLabelFixed: 150,
+      spanLabelFixed: 120,
       grid: { span: 12 },
     },
   };
-  initFinish = false;
-  constructor(public instrumentRecordService: InstrumentRecordService, public projectService: ProjectService,
+
+  constructor(public instrumentRecordService: InstrumentRecordService, public deviceRecordService: DeviceRecordService,
               public router: Router, public activatedRoute: ActivatedRoute,
               public msg: NzMessageService, public modal: NzModalService,
               @Inject(ALAIN_I18N_TOKEN) public i18NService: I18NService) {
     super(instrumentRecordService, modal, msg, router, i18NService, activatedRoute);
-    projectService.listAll().subscribe(v => {
+    zip(deviceRecordService.tree()).subscribe(([deviceRecordData]) => {
       this.initFinish = true;
-      this.commonService.responseWrapperProcess(v, (successData: any[]) => {
-        this.projectProcess(successData, null);
+      this.commonService.responseWrapperProcess(deviceRecordData, (successData: any[]) => {
+        this.deviceRecordProcess(successData, null);
       }, (failData) => {
-        this.projectProcess(null, failData);
+        this.deviceRecordProcess(null, failData);
       });
     });
   }
-  projectProcess(successData, failureData) {
-    const projects = [{ label: '请选择项目名称', value: '' }];
-    successData.forEach(p => {
-      projects.push({ label: p['name'], value: p['uuid'] });
+
+  submit(event) {
+    this.commonService.addOrUpdate(event).subscribe(v => {
+      this.commonService.responseWrapperProcess(v, (successData) => {
+        this.modal.success({
+          nzTitle: '',
+          nzContent: '操作成功',
+          nzMask: false,
+          nzOnOk: () => {
+            this.router.navigateByUrl(this.path + '/list');
+          },
+        });
+      }, (failureData) => {
+        this.commonService.formErrorProcess(failureData, this.sf);
+      });
     });
-    this.schema.properties.projectUuid['enum'] = projects;
-  }
-  ngOnInit(): void {
-    this.listPropertys = ['uuid', ...this.instrumentRecordService.listPropertys];
-    super.ngOnInit();
   }
 
+  ngOnInit(): void {
+    this.listPropertys = ['uuid', ...this.instrumentRecordService.editPropertys];
+    super.ngOnInit();
+
+  }
+
+  deviceRecordProcess(successData, failureData) {
+    super.deviceRecordProcess(this.schema, successData);
+  }
 }
