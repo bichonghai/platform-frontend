@@ -87,6 +87,12 @@ export class MenuDataService {
               'link': '/business/strength-static-load-record',
               'i18n': 'menu.strengthStaticLoadRecord',
             },
+            {
+              'key': 'rigidityStaticRecord',
+              'text': '静态刚性报告',
+              'link': '/business/rigidity-static-record',
+              'i18n': 'menu.rigidityStaticRecord',
+            },
           ],
         },
       ],

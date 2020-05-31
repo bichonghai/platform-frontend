@@ -42,6 +42,11 @@ const routes: Routes = [
     canActivate: [],
     loadChildren: () => import('./strength-static-load-record/strength-static-load-record.module').then(m => m.StrengthStaticLoadRecordModule)
   },
+  {
+    path: 'rigidity-static-record',
+    canActivate: [],
+    loadChildren: () => import('./rigidity-static-record/rigidity-static-record.module').then(m => m.RigidityStaticRecordModule)
+  },
 ];
 
 @NgModule({
