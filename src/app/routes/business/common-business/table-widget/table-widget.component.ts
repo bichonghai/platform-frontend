@@ -1,8 +1,6 @@
 import { ChangeDetectorRef, Component, Inject, Injector, Input, OnInit, ViewEncapsulation } from '@angular/core';
-import { ArrayLayoutWidget, FormProperty, SFComponent, SFItemComponent, SFValue } from '@delon/form';
+import { ArrayLayoutWidget, SFComponent, SFItemComponent, SFValue } from '@delon/form';
 import { SafeHtml } from '@angular/platform-browser';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { getData } from '@delon/form/src/utils';
 
 @Component({
   selector: 'app-table-widget',
@@ -71,47 +69,41 @@ export class TableWidgetComponent extends ArrayLayoutWidget implements OnInit {
 
 
   addItem(index: number) {
-    const result = [];
-    this.values.forEach((value, i) => {
-      result.push(value);
-      if (i === index) {
-        result.push(this.createModel());
-      }
-    });
-    this.formProperty._value = result;
-    this.ui.change(this.values);
-    this.setValue(this.values);
+    const properties: any[] = this.formProperty._value;
+    properties.splice(index + 1, 0, this.model());
   }
-
 
   removeItem(index: number) {
-    this.formProperty._value = this.values.filter((v, i) => {
-      if (i !== index) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-    this.ui.change(this.values);
-    this.setValue(this.values);
-  }
-
-  createModel() {
-    return {};
+    const properties: any[] = this.formProperty._value;
+    properties.splice(index, 1);
   }
 
   reset(value: SFValue) {
-    console.log(value);
+
+  }
+
+  model() {
+    const model = {};
+    this.keys.forEach(value => {
+      model[value] = ''; // 防止模型将一些空的元素过滤掉
+    });
+    return model;
   }
 
   get items() {
-    return this.values;
+    if (this.values.length > 0) {
+      return this.values;
+    } else {
+
+      this.values.push(this.model());
+      return this.values;
+    }
   }
 
   change(e, index, key) {
     this.values[index][key] = e;
-    this.ui.change(this.values);
-    this.setValue(this.values);
+    if (this.ui.change) {
+      this.ui.change(this.values);
+    }
   }
-
 }

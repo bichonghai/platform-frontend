@@ -49,27 +49,27 @@ export class RigidityStaticRecordEditComponent extends ReportEditComponent imple
             },
             point: {
               type: 'number',
-              ui: { i18n: 'rigidityStaticRecord.point'  },
+              ui: { i18n: 'rigidityStaticRecord.point' },
               maxLength: 50,
             },
             leftTrolley: {
               type: 'number',
-              ui: { i18n: 'rigidityStaticRecord.leftTrolley'  },
+              ui: { i18n: 'rigidityStaticRecord.leftTrolley' },
               maxLength: 50,
             },
             rightTrolley: {
               type: 'number',
-              ui: { i18n: 'rigidityStaticRecord.rightTrolley'  },
+              ui: { i18n: 'rigidityStaticRecord.rightTrolley' },
               maxLength: 50,
             },
             leftTrail: {
               type: 'number',
-              ui: { i18n: 'rigidityStaticRecord.leftTrail'  },
+              ui: { i18n: 'rigidityStaticRecord.leftTrail' },
               maxLength: 50,
             },
             rightTrail: {
               type: 'number',
-              ui: { i18n: 'rigidityStaticRecord.rightTrail'  },
+              ui: { i18n: 'rigidityStaticRecord.rightTrail' },
               maxLength: 50,
             },
           },
@@ -77,7 +77,9 @@ export class RigidityStaticRecordEditComponent extends ReportEditComponent imple
         ui: {
           i18n: 'rigidityStaticRecord.workingDetails',
           widget: TableWidgetComponent.KEY,
-          grid: { span: 24, arraySpan: 8 },
+          spanControl: 19,
+          spanLabel: 5,
+          grid: { span: 24 },
         } as SFArrayWidgetSchema,
       },
     },
@@ -101,7 +103,6 @@ export class RigidityStaticRecordEditComponent extends ReportEditComponent imple
         this.deviceRecordProcess(null, failData);
       });
     });
-    document.body.style.minWidth = '750px';
   }
 
   submit(event) {
