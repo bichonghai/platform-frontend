@@ -93,6 +93,12 @@ export class MenuDataService {
               'link': '/business/rigidity-static-record',
               'i18n': 'menu.rigidityStaticRecord',
             },
+            {
+              'key': 'heightGaugeRecord',
+              'text': '轨道高低差报告',
+              'link': '/business/height-gauge-record',
+              'i18n': 'menu.heightGaugeRecord',
+            },
           ],
         },
       ],

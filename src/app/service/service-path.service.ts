@@ -19,6 +19,7 @@ export class ServicePathService {
   public thicknessRecord = environment.platformUrl + '/thicknessRecord';
   public strengthStaticLoadRecord = environment.platformUrl + '/strengthStaticLoadRecord';
   public rigidityStaticRecord = environment.platformUrl + '/rigidityStaticRecord';
+  public heightGaugeRecord = environment.platformUrl + '/heightGaugeRecord';
   constructor() {
   }
 }

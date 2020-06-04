@@ -2,18 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { ReportDetailComponent } from '../../../common/component/report-detail-component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { zip } from 'rxjs';
-import { RigidityStaticRecordService } from '../../../../service/rigidity-static-record/rigidity-static-record.service';
+import { HeightGaugeRecordService } from '../../../../service/height-gauge-record/height-gauge-record.service';
 
 @Component({
-  selector: 'app-rigidity-static-record-detail',
-  templateUrl: './rigidity-static-record-detail.component.html',
-  styles: [],
+  selector: 'app-height-gauge-record-detail',
+  templateUrl: './height-gauge-record-detail.component.html',
+  styles: [
+  ]
 })
-export class RigidityStaticRecordDetailComponent extends ReportDetailComponent implements OnInit {
+export class HeightGaugeRecordDetailComponent extends ReportDetailComponent implements OnInit {
 
-  constructor(public rigidityStaticRecordService: RigidityStaticRecordService,
+  constructor(public heightGaugeRecordService: HeightGaugeRecordService,
               public router: Router, public activatedRoute: ActivatedRoute) {
-    super(rigidityStaticRecordService, router, activatedRoute, rigidityStaticRecordService.detailPropertys, 'rigidityStaticRecord');
+    super(heightGaugeRecordService, router, activatedRoute, heightGaugeRecordService.detailPropertys, 'heightGaugeRecord');
   }
 
   detail(): void {
@@ -25,7 +26,7 @@ export class RigidityStaticRecordDetailComponent extends ReportDetailComponent i
           } else if (key === 'workingDetails') {
             const workingDetails: any[] = successData['workingDetails'];
             const data = {
-              label: ['number', 'point', 'leftValue', 'rightValue', 'leftDifference', 'rightDifference'],
+              label: ['number', 'point', 'leftTrolley', 'rightTrolley', 'leftTrail', 'rightTrail'],
               value: workingDetails,
             };
             this.propertys.push({ label: this.i18nPrefix + '.' + key, value: data });
