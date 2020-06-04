@@ -22,7 +22,6 @@ export class RigidityStaticRecordEditComponent extends ReportEditComponent imple
       deviceRecordUuid: {
         type: 'string',
         enum: [],
-        default: '',
         ui: {
           i18n: 'deviceRecord.name',
           widget: 'cascader',
@@ -83,7 +82,7 @@ export class RigidityStaticRecordEditComponent extends ReportEditComponent imple
         } as SFArrayWidgetSchema,
       },
     },
-    required: [],
+    required: ['deviceRecordUuid'],
     ui: {
       spanLabelFixed: 120,
       grid: { span: 12 },

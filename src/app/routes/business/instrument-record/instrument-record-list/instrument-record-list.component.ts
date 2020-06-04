@@ -21,7 +21,7 @@ export class InstrumentRecordListComponent extends ReportListComponent implement
       deviceRecordUuid: {
         type: 'string',
         enum: [],
-        default: '',
+
         ui: {
           i18n: 'deviceRecord.name',
           widget: 'cascader',

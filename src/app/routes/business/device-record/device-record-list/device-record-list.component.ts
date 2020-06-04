@@ -25,7 +25,7 @@ export class DeviceRecordListComponent extends ListComponent implements OnInit {
         minWidth: 150,
         enum: [
         ],
-        default: '',
+
         ui: {
           i18n: 'deviceRecord.projectUuid',
           widget: 'select',

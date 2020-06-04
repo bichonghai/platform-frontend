@@ -22,7 +22,7 @@ export class InstrumentRecordEditComponent  extends ReportEditComponent implemen
       deviceRecordUuid: {
         type: 'string',
         enum: [],
-        default: '',
+
         ui: {
           i18n: 'deviceRecord.name',
           widget: 'cascader',

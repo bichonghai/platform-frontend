@@ -22,7 +22,7 @@ export class StrengthStaticLoadRecordEditComponent  extends ReportEditComponent 
       deviceRecordUuid: {
         type: 'string',
         enum: [],
-        default: '',
+
         ui: {
           i18n: 'deviceRecord.name',
           widget: 'cascader',
@@ -55,7 +55,7 @@ export class StrengthStaticLoadRecordEditComponent  extends ReportEditComponent 
         ui: { i18n: 'strengthStaticLoadRecord.itemDetails', grid: { span: 24 } } as SFArrayWidgetSchema,
       },
     },
-    required: [],
+    required: ['deviceRecordUuid'],
     ui: {
       spanLabelFixed: 120,
       grid: { span: 12 },

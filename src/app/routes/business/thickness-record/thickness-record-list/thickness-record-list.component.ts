@@ -20,7 +20,7 @@ export class ThicknessRecordListComponent extends ReportListComponent implements
       deviceRecordUuid: {
         type: 'string',
         enum: [],
-        default: '',
+
         ui: {
           i18n: 'deviceRecord.name',
           widget: 'cascader',

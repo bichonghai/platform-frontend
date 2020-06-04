@@ -22,7 +22,7 @@ export class ThicknessRecordEditComponent extends ReportEditComponent implements
       deviceRecordUuid: {
         type: 'string',
         enum: [],
-        default: '',
+
         ui: {
           i18n: 'deviceRecord.name',
           minWidth: 150,
@@ -39,7 +39,7 @@ export class ThicknessRecordEditComponent extends ReportEditComponent implements
             thicknessSectionPositionRecordUuid: {
               type: 'string',
               enum: [],
-              default: '',
+
               ui: {
                 i18n: 'thicknessRecord.thicknessSectionPositionRecordUuid',
                 widget: 'cascader',

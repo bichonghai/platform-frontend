@@ -26,7 +26,7 @@ export class UserEditComponent extends EditComponent implements OnInit {
           { label: '男', value: '男' },
           { label: '女', value: '女' },
         ],
-        default: '',
+
         ui: {
           widget: 'select',
           i18n: 'user.sex',

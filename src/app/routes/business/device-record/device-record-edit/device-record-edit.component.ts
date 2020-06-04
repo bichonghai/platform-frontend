@@ -25,7 +25,7 @@ export class DeviceRecordEditComponent extends EditComponent implements OnInit {
         enum: [
           { label: '请选择项目名称', value: '' },
         ],
-        default: '',
+
         ui: {
           i18n: 'deviceRecord.projectUuid',
           widget: 'select',

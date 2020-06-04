@@ -21,7 +21,7 @@ export class StrengthStaticLoadRecordListComponent extends ReportListComponent i
       deviceRecordUuid: {
         type: 'string',
         enum: [],
-        default: '',
+
         ui: {
           i18n: 'deviceRecord.name',
           widget: 'cascader',
