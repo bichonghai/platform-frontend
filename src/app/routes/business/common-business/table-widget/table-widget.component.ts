@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ArrayLayoutWidget, FormProperty } from '@delon/form';
+import { ChangeDetectorRef, Component, Inject, Injector, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { ArrayLayoutWidget, FormProperty, SFComponent, SFItemComponent, SFValue } from '@delon/form';
 import { SafeHtml } from '@angular/platform-browser';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { getData } from '@delon/form/src/utils';
 
 @Component({
   selector: 'app-table-widget',
@@ -15,14 +17,20 @@ export class TableWidgetComponent extends ArrayLayoutWidget implements OnInit {
   addType: string;
   removeTitle: string | null;
   arraySpan = 8;
+  @Input()
+  showOper = true;
+  @Input()
+  showScroll = {};
 
-  get addDisabled() {
-    return this.disabled || (this.schema.maxItems && (this.formProperty.properties as FormProperty[]).length >= this.schema.maxItems);
+  constructor(
+    @Inject(ChangeDetectorRef) protected readonly cd: ChangeDetectorRef,
+    @Inject(Injector) protected readonly injector: Injector,
+    @Inject(SFItemComponent) protected readonly sfItemComp?: SFItemComponent,
+    @Inject(SFComponent) protected readonly sfComp?: SFComponent,
+  ) {
+    super(cd, injector, sfItemComp, sfComp);
   }
 
-  get showRemove() {
-    return !this.disabled && this.removeTitle;
-  }
 
   ngOnInit(): void {
     const { grid, addTitle, addType, removable, removeTitle } = this.ui;
@@ -35,11 +43,75 @@ export class TableWidgetComponent extends ArrayLayoutWidget implements OnInit {
     this.removeTitle = removable === false ? null : removeTitle || this.l.removeText;
   }
 
-  addItem() {
-    this.formProperty.add({});
+  get labels() {
+    const labels = [];
+    Object.values(this.schema.items.properties).forEach(value => {
+      labels.push(value['title']);
+    });
+    return labels;
   }
 
-  removeItem(index: number) {
-    this.formProperty.remove(index);
+  get keys() {
+    const labels = [];
+    Object.keys(this.schema.items.properties).forEach(value => {
+      labels.push(value);
+    });
+    return labels;
   }
+
+  get values(): any[] {
+    let values = [];
+    // @ts-ignore
+    const properties: [] = this.formProperty._value;
+    if (properties) {
+      values = properties;
+    }
+    return values;
+  }
+
+
+  addItem(index: number) {
+    const result = [];
+    this.values.forEach((value, i) => {
+      result.push(value);
+      if (i === index) {
+        result.push(this.createModel());
+      }
+    });
+    this.formProperty._value = result;
+    this.ui.change(this.values);
+    this.setValue(this.values);
+  }
+
+
+  removeItem(index: number) {
+    this.formProperty._value = this.values.filter((v, i) => {
+      if (i !== index) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    this.ui.change(this.values);
+    this.setValue(this.values);
+  }
+
+  createModel() {
+    return {};
+  }
+
+  reset(value: SFValue) {
+    console.log(value);
+  }
+
+  get items() {
+    return this.values;
+  }
+
+  change(e, index, key) {
+    this.values[index][key] = e;
+    this.ui.change(this.values);
+    this.setValue(this.values);
+  }
+
 }
