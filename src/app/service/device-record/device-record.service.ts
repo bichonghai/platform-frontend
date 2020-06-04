@@ -11,8 +11,7 @@ import { catchError, debounceTime } from 'rxjs/operators';
 export class DeviceRecordService extends CommonService {
   detailPropertys = new Set(['projectUuid', 'name', 'code', 'testDate', 'weight', 'length', 'weather', 'temperature', 'wind',
     'manufacturer', 'manufactureDate', 'testLocation', 'testDate', 'load']);
-  listPropertys = new Set(['projectUuid', 'name', 'code', 'testDate', 'weight', 'length', 'weather', 'temperature', 'wind',
-    'manufacturer', 'manufactureDate', 'testLocation', 'testDate', 'load']);
+  listPropertys = new Set(['projectUuid', 'name', 'code', 'testDate', 'testDate', 'load']);
   constructor(protected servicePathService: ServicePathService, protected httpClient: HttpClient) {
     super(servicePathService.deviceRecord, httpClient);
   }

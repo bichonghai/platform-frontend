@@ -102,6 +102,7 @@ export class RigidityStaticRecordEditComponent extends ReportEditComponent imple
         this.deviceRecordProcess(null, failData);
       });
     });
+    document.body.style.minWidth = '1200px';
   }
 
   submit(event) {

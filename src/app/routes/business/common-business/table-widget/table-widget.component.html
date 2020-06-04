@@ -6,7 +6,7 @@
   </nz-col>
 <ng-container *ngIf="items.length>0">
   <nz-col [nzSpan]="ui.spanControl" [nzOffset]="ui.offsetControl">
-    <nz-table [nzData]="values" [nzShowPagination]="false"   [nzScroll]="showScroll">
+    <nz-table [nzData]="values" [nzShowPagination]="false" >
       <thead>
       <tr>
         <th  *ngFor="let item of labels"> {{item }}</th>

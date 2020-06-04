@@ -23,8 +23,7 @@ export class DeviceRecordListComponent extends ListComponent implements OnInit {
         fixed: 'left',
         type: 'string',
         minWidth: 150,
-        enum: [
-        ],
+        enum: [],
 
         ui: {
           i18n: 'deviceRecord.projectUuid',
@@ -63,20 +62,19 @@ export class DeviceRecordListComponent extends ListComponent implements OnInit {
     for (const entry of this.deviceRecordService.listPropertys) {
       if (entry === 'projectUuid') {
         this.columns.push({
+          width: 150,
           title: { i18n: 'deviceRecord.' + entry }, type: 'enum', index: entry,
           enum:
           enumProject,
         });
       } else {
-        this.columns.push({ title: { i18n: 'deviceRecord.' + entry }, index: entry });
+        this.columns.push({ title: { i18n: 'deviceRecord.' + entry }, index: entry, width: 150 });
       }
-
     }
     this.columns.push(
       {
         title: '操作',
-        fixed: 'right',
-        width: 150,
+        fixed: 'right', width: 150,
         buttons: [
           {
             i18n: 'menu.operator.detail',

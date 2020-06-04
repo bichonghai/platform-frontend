@@ -17,8 +17,6 @@ export class TableWidgetComponent extends ArrayLayoutWidget implements OnInit {
   arraySpan = 8;
   @Input()
   showOper = true;
-  @Input()
-  showScroll = {};
 
   constructor(
     @Inject(ChangeDetectorRef) protected readonly cd: ChangeDetectorRef,
