@@ -52,6 +52,11 @@ const routes: Routes = [
     canActivate: [],
     loadChildren: () => import('./height-gauge-record/height-gauge-record.module').then(m => m.HeightGaugeRecordModule)
   },
+  {
+    path: 'diagonal-record',
+    canActivate: [],
+    loadChildren: () => import('./diagonal-record/diagonal-record.module').then(m => m.DiagonalRecordModule)
+  },
 ];
 
 @NgModule({

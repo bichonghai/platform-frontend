@@ -99,6 +99,12 @@ export class MenuDataService {
               'link': '/business/height-gauge-record',
               'i18n': 'menu.heightGaugeRecord',
             },
+            {
+              'key': 'diagonalRecord',
+              'text': '轨道高低差报告',
+              'link': '/business/diagonal-record',
+              'i18n': 'menu.diagonalRecord',
+            },
           ],
         },
       ],

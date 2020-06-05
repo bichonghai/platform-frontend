@@ -20,6 +20,7 @@ export class ServicePathService {
   public strengthStaticLoadRecord = environment.platformUrl + '/strengthStaticLoadRecord';
   public rigidityStaticRecord = environment.platformUrl + '/rigidityStaticRecord';
   public heightGaugeRecord = environment.platformUrl + '/heightGaugeRecord';
+  public diagonalRecord = environment.platformUrl + '/diagonalRecord';
   constructor() {
   }
 }
