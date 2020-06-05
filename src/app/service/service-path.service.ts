@@ -20,6 +20,7 @@ export class ServicePathService {
   public strengthStaticLoadRecord = environment.platformUrl + '/strengthStaticLoadRecord';
   public strengthDynamicLoadRecord = environment.platformUrl + '/strengthDynamicLoadRecord';
   public rigidityStaticRecord = environment.platformUrl + '/rigidityStaticRecord';
+  public rigidityDynamicRecord = environment.platformUrl + '/rigidityDynamicRecord';
   public heightGaugeRecord = environment.platformUrl + '/heightGaugeRecord';
   public diagonalRecord = environment.platformUrl + '/diagonalRecord';
   constructor() {

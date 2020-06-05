@@ -53,6 +53,11 @@ const routes: Routes = [
     loadChildren: () => import('./rigidity-static-record/rigidity-static-record.module').then(m => m.RigidityStaticRecordModule)
   },
   {
+    path: 'rigidity-dynamic-record',
+    canActivate: [],
+    loadChildren: () => import('./rigidity-dynamic-record/rigidity-dynamic-record.module').then(m => m.RigidityDynamicRecordModule)
+  },
+  {
     path: 'height-gauge-record',
     canActivate: [],
     loadChildren: () => import('./height-gauge-record/height-gauge-record.module').then(m => m.HeightGaugeRecordModule)

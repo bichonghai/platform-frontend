@@ -100,6 +100,12 @@ export class MenuDataService {
               'i18n': 'menu.rigidityStaticRecord',
             },
             {
+              'key': 'rigidityDynamicRecord',
+              'text': '动态刚性报告',
+              'link': '/business/rigidity-dynamic-record',
+              'i18n': 'menu.rigidityDynamicRecord',
+            },
+            {
               'key': 'heightGaugeRecord',
               'text': '轨道高低差报告',
               'link': '/business/height-gauge-record',
