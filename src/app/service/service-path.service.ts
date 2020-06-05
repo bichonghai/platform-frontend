@@ -18,6 +18,7 @@ export class ServicePathService {
   public thicknessSectionPosition = environment.platformUrl + '/thicknessSectionPosition';
   public thicknessRecord = environment.platformUrl + '/thicknessRecord';
   public strengthStaticLoadRecord = environment.platformUrl + '/strengthStaticLoadRecord';
+  public strengthDynamicLoadRecord = environment.platformUrl + '/strengthDynamicLoadRecord';
   public rigidityStaticRecord = environment.platformUrl + '/rigidityStaticRecord';
   public heightGaugeRecord = environment.platformUrl + '/heightGaugeRecord';
   public diagonalRecord = environment.platformUrl + '/diagonalRecord';

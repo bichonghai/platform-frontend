@@ -43,6 +43,11 @@ const routes: Routes = [
     loadChildren: () => import('./strength-static-load-record/strength-static-load-record.module').then(m => m.StrengthStaticLoadRecordModule)
   },
   {
+    path: 'strength-dynamic-load-record',
+    canActivate: [],
+    loadChildren: () => import('./strength-dynamic-load-record/strength-dynamic-load-record.module').then(m => m.StrengthDynamicLoadRecordModule)
+  },
+  {
     path: 'rigidity-static-record',
     canActivate: [],
     loadChildren: () => import('./rigidity-static-record/rigidity-static-record.module').then(m => m.RigidityStaticRecordModule)

@@ -88,6 +88,12 @@ export class MenuDataService {
               'i18n': 'menu.strengthStaticLoadRecord',
             },
             {
+              'key': 'strengthDynamicLoadRecord',
+              'text': '动载强度报告',
+              'link': '/business/strength-dynamic-load-record',
+              'i18n': 'menu.strengthDynamicLoadRecord',
+            },
+            {
               'key': 'rigidityStaticRecord',
               'text': '静态刚性报告',
               'link': '/business/rigidity-static-record',
