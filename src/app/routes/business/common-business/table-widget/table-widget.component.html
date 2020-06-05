@@ -4,30 +4,38 @@
       {{ schema.title }}
     </label>
   </nz-col>
-<ng-container *ngIf="items.length>0">
-  <nz-col [nzSpan]="ui.spanControl" [nzOffset]="ui.offsetControl">
-    <nz-table [nzData]="values" [nzShowPagination]="false" >
-      <thead>
-      <tr>
-        <th  *ngFor="let item of labels"> {{item }}</th>
-        <th> {{'common.oper' | translate }}</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let item of items; let i = index">
-        <td *ngFor="let key of keys">
-            <span  nzErrorTip="">
-              <nz-input-number  [(ngModel)]="items[i][key]" (ngModelChange)="change($event,i,key)"></nz-input-number>
+  <ng-container *ngIf="items.length>0">
+    <nz-col [nzSpan]="ui.spanControl" [nzOffset]="ui.offsetControl">
+      <nz-table [nzData]="values" [nzShowPagination]="false">
+        <thead>
+        <tr>
+          <th *ngFor="let item of labels"> {{item }}</th>
+          <th> {{'common.oper' | translate }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of items; let i = index">
+          <td *ngFor="let key of keys">
+            <span nzErrorTip="">
+              <nz-input-number *ngIf="childWidget(key)==='number'" [(ngModel)]="items[i][key]"
+                               (ngModelChange)="change($event,i,key)"></nz-input-number>
+              <nz-select *ngIf="childWidget(key)==='select'" [(ngModel)]="items[i][key]"
+                               (ngModelChange)="change($event,i,key)">
+                 <nz-option *ngFor="let lv of selectData(key)" [nzValue]="lv.value" [nzLabel]="lv.label"></nz-option>
+              </nz-select>
            </span>
-        </td>
-        <td>
-          <a (click)="addItem(i)"><i nz-icon nzType="plus" nzTheme="outline" nz-tooltip    nzTooltipTitle="添加" nzTooltipPlacement="bottom"></i></a>&nbsp;&nbsp;
-          <a  *ngIf="items.length>1" (click)="removeItem(i)"><i nz-icon nzType="close" nzTheme="outline" nz-tooltip    nzTooltipTitle="删除" nzTooltipPlacement="bottom"></i></a>
-        </td>
-      </tr>
-      </tbody>
-    </nz-table>
-  </nz-col>
+          </td>
+          <td>
+            <a (click)="addItem(i)"><i nz-icon nzType="plus" nzTheme="outline" nz-tooltip nzTooltipTitle="添加"
+                                       nzTooltipPlacement="bottom"></i></a>&nbsp;&nbsp;
+            <a *ngIf="items.length>1" (click)="removeItem(i)"><i nz-icon nzType="close" nzTheme="outline" nz-tooltip
+                                                                 nzTooltipTitle="删除"
+                                                                 nzTooltipPlacement="bottom"></i></a>
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </nz-col>
 
-</ng-container>
+  </ng-container>
 

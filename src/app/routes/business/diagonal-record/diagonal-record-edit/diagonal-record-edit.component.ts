@@ -10,6 +10,7 @@ import { ALAIN_I18N_TOKEN } from '@delon/theme';
 import { I18NService } from '../../../../core';
 import { zip } from 'rxjs';
 import { DiagonalRecordService } from '../../../../service/diagonal-record/diagonal-record.service';
+import { StandardService } from '../../../../service/standard/standard.service';
 
 @Component({
   selector: 'app-diagonal-record-edit',
@@ -60,9 +61,12 @@ export class DiagonalRecordEditComponent extends ReportEditComponent implements 
               maxLength: 50,
             },
             standard: {
-              type: 'number',
-              ui: { i18n: 'diagonalRecord.standard' },
-              maxLength: 50,
+              type: 'string',
+              enum: [],
+              ui: {
+                i18n: 'diagonalRecord.standard',
+                widget: 'select',
+              } as SFSelectWidgetSchema,
             },
           },
         },
@@ -83,16 +87,21 @@ export class DiagonalRecordEditComponent extends ReportEditComponent implements 
   };
 
   constructor(public diagonalRecordService: DiagonalRecordService, public deviceRecordService: DeviceRecordService,
-              public router: Router, public activatedRoute: ActivatedRoute,
+              public router: Router, public activatedRoute: ActivatedRoute, public standardService: StandardService,
               public msg: NzMessageService, public modal: NzModalService,
               @Inject(ALAIN_I18N_TOKEN) public i18NService: I18NService) {
     super(diagonalRecordService, modal, msg, router, i18NService, activatedRoute);
-    zip(deviceRecordService.tree()).subscribe(([deviceRecordData]) => {
+    zip(deviceRecordService.tree(), standardService.listAll()).subscribe(([deviceRecordData, standardData]) => {
       this.initFinish = true;
       this.commonService.responseWrapperProcess(deviceRecordData, (successData: any[]) => {
         this.deviceRecordProcess(successData, null);
       }, (failData) => {
         this.deviceRecordProcess(null, failData);
+      });
+      this.commonService.responseWrapperProcess(standardData, (successData: any[]) => {
+        this.standardProcess(successData, null);
+      }, (failData) => {
+
       });
     });
     document.body.style.minWidth = '1200px';
@@ -119,6 +128,19 @@ export class DiagonalRecordEditComponent extends ReportEditComponent implements 
     this.listPropertys = ['uuid', ...this.diagonalRecordService.editPropertys];
     super.ngOnInit();
 
+  }
+
+  standardProcess(successData: any[], failureData) {
+    if (successData) {
+      this.initFinish = true;
+      const labelValue = [];
+      if (successData) {
+        successData.forEach(p => {
+          labelValue.push({ label: p['name'], value: p['name'] });
+        });
+      }
+      this.schema.properties.workingDetails.items.properties['standard'].enum = labelValue;
+    }
   }
 
   deviceRecordProcess(successData, failureData) {

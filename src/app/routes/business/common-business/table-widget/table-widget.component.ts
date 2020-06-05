@@ -80,6 +80,14 @@ export class TableWidgetComponent extends ArrayLayoutWidget implements OnInit {
 
   }
 
+  childWidget(field): string {
+    return this.ui['$items']['$' + field]['widget'];
+  }
+
+  selectData(field) {
+    return this.schema.items.properties[field]['enum'];
+  }
+
   model() {
     const model = {};
     this.keys.forEach(value => {
