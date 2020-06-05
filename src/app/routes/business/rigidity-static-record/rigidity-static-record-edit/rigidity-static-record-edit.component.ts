@@ -34,6 +34,17 @@ export class RigidityStaticRecordEditComponent extends ReportEditComponent imple
       levelingInstrument: { type: 'string', ui: { i18n: 'rigidityStaticRecord.levelingInstrument' }, maxLength: 50 },
       carSpace: { type: 'string', ui: { i18n: 'rigidityStaticRecord.carSpace' }, maxLength: 50 },
       sectionPosition: { type: 'string', ui: { i18n: 'rigidityStaticRecord.sectionPosition' }, maxLength: 50 },
+      workingConditions: {
+        type: 'array',
+        maxItems: 14,
+        items: {
+          type: 'object',
+          properties: {
+            workingCondition: { type: 'string', ui: { i18n: 'rigidityStaticRecord.workingCondition', widget: 'textarea',  autosize: { minRows: 2, maxRows: 6 } }, maxLength: 200 },
+          },
+        },
+        ui: { i18n: 'rigidityStaticRecord.workingConditions', grid: { span: 24 } } as SFArrayWidgetSchema,
+      },
       workingDetails: {
         type: 'array',
         title: '报告纪录',

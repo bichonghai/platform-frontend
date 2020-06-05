@@ -17,6 +17,9 @@
         <tr *ngFor="let item of items; let i = index">
           <td *ngFor="let key of keys">
             <span nzErrorTip="">
+               <input nz-input *ngIf="childWidget(key)==='string'" [(ngModel)]="items[i][key]"
+                                (ngModelChange)="change($event,i,key)">
+
               <nz-input-number *ngIf="childWidget(key)==='number'" [(ngModel)]="items[i][key]"
                                (ngModelChange)="change($event,i,key)"></nz-input-number>
               <nz-select *ngIf="childWidget(key)==='select'" [(ngModel)]="items[i][key]"

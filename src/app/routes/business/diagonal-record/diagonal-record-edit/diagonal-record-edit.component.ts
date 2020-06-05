@@ -41,7 +41,7 @@ export class DiagonalRecordEditComponent extends ReportEditComponent implements 
           type: 'object',
           properties: {
             point: {
-              type: 'number',
+              type: 'string',
               ui: { i18n: 'diagonalRecord.point' },
               maxLength: 50,
             },

@@ -2,10 +2,10 @@
 <nz-card [nzHoverable]="true" [nzBordered]="false">
   <sv-container  [col]="2">
     <ng-container *ngFor="let item of propertys">
-      <ng-container *ngIf="item.label!=='rigidityStaticRecord.workingDetails'">
+      <ng-container *ngIf="item.label!=='rigidityStaticRecord.workingDetails' && item.label!=='rigidityStaticRecord.workingConditions'">
         <sv label="{{item.label| translate}}"  >{{item.value}}</sv>
       </ng-container>
-      <ng-container *ngIf="item.label==='rigidityStaticRecord.workingDetails'">
+      <ng-container *ngIf="item.label==='rigidityStaticRecord.workingDetails' || item.label==='rigidityStaticRecord.workingConditions'">
         <sv label="{{item.label| translate}}"  [col]="1" >
           <nz-col class="ant-form-item-control-wrapper">
             <div class="ant-form-item-control">

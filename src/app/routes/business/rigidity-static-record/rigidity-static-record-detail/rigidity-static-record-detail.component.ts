@@ -22,6 +22,14 @@ export class RigidityStaticRecordDetailComponent extends ReportDetailComponent i
         this.detailPropertys.forEach(key => {
           if (key === 'deviceRecordUuid') {
             this.propertys.push({ label: this.i18nPrefix + '.' + key, value: successData['deviceRecordShow'] });
+          }else if (key === 'workingConditions') {
+            const workingConditions: any[] = successData['workingConditions'];
+            const data = {
+              label: ['workingCondition'],
+              value: workingConditions,
+            };
+            this.propertys.push({ label: this.i18nPrefix + '.' + key, value: data });
+            console.log({ label: this.i18nPrefix + '.' + key, value: data });
           } else if (key === 'workingDetails') {
             const workingDetails: any[] = successData['workingDetails'];
             const data = {

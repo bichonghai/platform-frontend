@@ -12,7 +12,7 @@ export class RigidityStaticRecordService extends CommonService {
     super(servicePathService.rigidityStaticRecord, httpClient);
   }
 
-  detailPropertys = new Set(['deviceRecordUuid', 'gateLocation', 'direction', 'distance', 'trackLength', 'levelingInstrument', 'carSpace', 'sectionPosition', 'workingDetails']);
-  listPropertys = new Set(['deviceRecordUuid', 'workingDetailsSize']);
-  editPropertys = new Set(['deviceRecordUuid', 'gateLocation', 'direction', 'distance', 'trackLength', 'levelingInstrument', 'carSpace', 'sectionPosition', 'workingDetails']);
+  detailPropertys = new Set(['deviceRecordUuid', 'gateLocation', 'direction', 'distance', 'trackLength', 'levelingInstrument', 'carSpace', 'sectionPosition', 'workingConditions', 'workingDetails']);
+  listPropertys = new Set(['deviceRecordUuid', 'workingConditionsSize', 'workingDetailsSize']);
+  editPropertys = new Set(['deviceRecordUuid', 'gateLocation', 'direction', 'distance', 'trackLength', 'levelingInstrument', 'carSpace', 'sectionPosition', 'workingConditions', 'workingDetails']);
 }
