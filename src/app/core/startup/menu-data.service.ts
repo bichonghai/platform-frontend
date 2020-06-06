@@ -123,6 +123,18 @@ export class MenuDataService {
               'link': '/business/diagonal-record',
               'i18n': 'menu.diagonalRecord',
             },
+            {
+              'key': 'inclinationRecord',
+              'text': '倾斜度报告',
+              'link': '/business/inclination-record',
+              'i18n': 'menu.inclinationRecord',
+            },
+            {
+              'key': 'samePositionDifferenceRecord',
+              'text': '同位差报告',
+              'link': '/business/same-position-difference-record',
+              'i18n': 'menu.samePositionDifferenceRecord',
+            },
           ],
         },
       ],

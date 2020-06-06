@@ -5,8 +5,8 @@
       <sf #sf [schema]="schema" (formSubmit)="submit($event)" [formData]="q" #sf [mode]="'search'">
       </sf>
     </div>
-    <button nz-button class="ml-sm" (click)="add()" [acl]="'diagonalRecord:add'">{{'menu.operator.add'|translate}}</button>
-    <button nz-button class="ml-sm" (click)="remove()" [acl]="'diagonalRecord:remove'">{{'menu.operator.delete'|translate}}</button>
+    <button nz-button class="ml-sm" (click)="add()" [acl]="'inclinationRecord:add'">{{'menu.operator.add'|translate}}</button>
+    <button nz-button class="ml-sm" (click)="remove()" [acl]="'inclinationRecord:remove'">{{'menu.operator.delete'|translate}}</button>
     <button nz-button (click)="st.export()">{{'menu.operator.export'|translate}}</button>
     <div class="my-md">
       <nz-alert [nzType]="'info'" [nzShowIcon]="true" [nzMessage]="message">

@@ -24,6 +24,8 @@ export class ServicePathService {
   public heightGaugeRecord = environment.platformUrl + '/heightGaugeRecord';
   public gaugeRecord = environment.platformUrl + '/gaugeRecord';
   public diagonalRecord = environment.platformUrl + '/diagonalRecord';
+  public inclinationRecord = environment.platformUrl + '/inclinationRecord';
+  public samePositionDifferenceRecord = environment.platformUrl + '/samePositionDifferenceRecord';
   constructor() {
   }
 }

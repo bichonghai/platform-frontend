@@ -72,6 +72,16 @@ const routes: Routes = [
     canActivate: [],
     loadChildren: () => import('./diagonal-record/diagonal-record.module').then(m => m.DiagonalRecordModule)
   },
+  {
+    path: 'inclination-record',
+    canActivate: [],
+    loadChildren: () => import('./inclination-record/inclination-record.module').then(m => m.InclinationRecordModule)
+  },
+  {
+    path: 'same-position-difference-record',
+    canActivate: [],
+    loadChildren: () => import('./same-position-difference-record/same-position-difference-record.module').then(m => m.SamePositionDifferenceRecordModule)
+  },
 ];
 
 @NgModule({
