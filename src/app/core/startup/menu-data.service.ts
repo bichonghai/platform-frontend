@@ -112,6 +112,12 @@ export class MenuDataService {
               'i18n': 'menu.heightGaugeRecord',
             },
             {
+              'key': 'gaugeRecord',
+              'text': '轨距报告',
+              'link': '/business/gauge-record',
+              'i18n': 'menu.gaugeRecord',
+            },
+            {
               'key': 'diagonalRecord',
               'text': '轨道高低差报告',
               'link': '/business/diagonal-record',

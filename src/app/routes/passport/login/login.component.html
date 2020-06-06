@@ -16,16 +16,20 @@
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
+      <nz-form-item>
+        <nz-col [nzSpan]="12">
+          <label nz-checkbox formControlName="remember">{{ 'app.login.remember-me' | translate }}</label>
+        </nz-col>
+      </nz-form-item>
+      <nz-form-item>
+        <button nz-button type="submit" nzType="primary" nzSize="large" [nzLoading]="http.loading" nzBlock>
+          {{ 'app.login.login' | translate }}
+        </button>
+      </nz-form-item>
     </nz-tab>
+  <!--  <nz-tab [nzTitle]="'app.login.weixin' | translate">
+
+    </nz-tab>-->
   </nz-tabset>
-  <nz-form-item>
-    <nz-col [nzSpan]="12">
-      <label nz-checkbox formControlName="remember">{{ 'app.login.remember-me' | translate }}</label>
-    </nz-col>
-  </nz-form-item>
-  <nz-form-item>
-    <button nz-button type="submit" nzType="primary" nzSize="large" [nzLoading]="http.loading" nzBlock>
-      {{ 'app.login.login' | translate }}
-    </button>
-  </nz-form-item>
+
 </form>

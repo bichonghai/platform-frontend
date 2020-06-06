@@ -63,6 +63,11 @@ const routes: Routes = [
     loadChildren: () => import('./height-gauge-record/height-gauge-record.module').then(m => m.HeightGaugeRecordModule)
   },
   {
+    path: 'gauge-record',
+    canActivate: [],
+    loadChildren: () => import('./gauge-record/gauge-record.module').then(m => m.GaugeRecordModule)
+  },
+  {
     path: 'diagonal-record',
     canActivate: [],
     loadChildren: () => import('./diagonal-record/diagonal-record.module').then(m => m.DiagonalRecordModule)
