@@ -66,6 +66,26 @@ export class InclinationRecordEditComponent extends ReportEditComponent implemen
               ui: { i18n: 'inclinationRecord.down' },
               maxLength: 50,
             },
+            up2: {
+              type: 'number',
+              ui: { i18n: 'inclinationRecord.up2' },
+              maxLength: 50,
+            },
+            down2: {
+              type: 'number',
+              ui: { i18n: 'inclinationRecord.down2' },
+              maxLength: 50,
+            },
+            up3: {
+              type: 'number',
+              ui: { i18n: 'inclinationRecord.up3' },
+              maxLength: 50,
+            },
+            down3: {
+              type: 'number',
+              ui: { i18n: 'inclinationRecord.down3' },
+              maxLength: 50,
+            },
             length: {
               type: 'number',
               ui: { i18n: 'inclinationRecord.length' },
@@ -75,7 +95,6 @@ export class InclinationRecordEditComponent extends ReportEditComponent implemen
         },
         ui: {
           i18n: 'inclinationRecord.workingDetails',
-          widget: TableWidgetComponent.KEY,
           spanControl: 19,
           spanLabel: 5,
           grid: { span: 24 },

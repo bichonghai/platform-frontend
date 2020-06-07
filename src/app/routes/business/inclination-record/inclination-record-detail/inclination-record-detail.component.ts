@@ -26,7 +26,7 @@ export class InclinationRecordDetailComponent  extends ReportDetailComponent imp
           } else if (key === 'workingDetails') {
             const workingDetails: any[] = successData['workingDetails'];
             const data = {
-              label: ['content', 'point', 'up', 'down', 'length'],
+              label: ['content', 'point', 'up', 'down', 'up2', 'down2', 'up3', 'down3', 'length'],
               value: workingDetails,
             };
             this.propertys.push({ label: this.i18nPrefix + '.' + key, value: data });
