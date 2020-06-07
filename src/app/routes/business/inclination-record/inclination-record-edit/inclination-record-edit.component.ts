@@ -91,6 +91,14 @@ export class InclinationRecordEditComponent extends ReportEditComponent implemen
               ui: { i18n: 'inclinationRecord.length' },
               maxLength: 50,
             },
+            standard: {
+              type: 'string',
+              enum: [],
+              ui: {
+                i18n: 'inclinationRecord.standard',
+                widget: 'select',
+              } as SFSelectWidgetSchema,
+            },
           },
         },
         ui: {

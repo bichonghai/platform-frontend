@@ -199,6 +199,7 @@
   "inclinationRecord.down2":"下测点2",
   "inclinationRecord.up3":"上测点3",
   "inclinationRecord.down3":"下测点3",
+  "inclinationRecord.standard":"标准",
   "inclinationRecord.length":"测量长度",
 
   "samePositionDifferenceRecord.deviceRecordUuid":"样机报告",
