@@ -2,13 +2,12 @@
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 // @ts-ignore
-const platformBackend = Environment.getPlatformBackend();
 export const environment = {
   SERVER_URL: `./`,
   production: false,
   useHash: true,
   hmr: false,
-  platformUrl: platformBackend,
+  platformUrl: 'http://180.168.96.174:38888/platform',
 };
 
 /*
