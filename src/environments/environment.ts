@@ -1,13 +1,14 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-
+// @ts-ignore
+const platformBackend = Environment.getPlatformBackend();
 export const environment = {
   SERVER_URL: `./`,
   production: false,
   useHash: true,
   hmr: false,
-  platformUrl:'http://180.168.96.174:38888/platform'
+  platformUrl: platformBackend,
 };
 
 /*

@@ -14,6 +14,7 @@
         "statements"
       ]
     },
+    "only-arrow-functions":false,
     "selector-type-no-unknown": false,
     "array-type": false,
     "arrow-return-shorthand": true,

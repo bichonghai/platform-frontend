@@ -1,7 +1,9 @@
+// @ts-ignore
+const platformBackend = Environment.getPlatformBackend();
 export const environment = {
   SERVER_URL: `./`,
-  production: true,
+  production: false,
   useHash: true,
   hmr: false,
-  platformUrl:'http://172.17.8.192:38888/platform'
+  platformUrl: platformBackend,
 };
