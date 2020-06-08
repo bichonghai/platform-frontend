@@ -4,6 +4,7 @@
   "menu.identity":"身份管理",
   "menu.role":"角色管理",
   "menu.user":"用户管理",
+  "menu.center":"用户中心",
   "menu.record":"报告管理",
   "menu.deviceRecord":"样机报告",
   "menu.instrumentRecord":"样机仪器使用",

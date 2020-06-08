@@ -26,6 +26,12 @@ export class MenuDataService {
               'i18n': 'menu.user',
             },
             {
+              'key': 'center',
+              'text': '用户中心',
+              'link': '/security/user/center',
+              'i18n': 'menu.center',
+            },
+            {
               'key': 'role',
               'text': '角色管理',
               'link': '/security/role',
@@ -40,21 +46,21 @@ export class MenuDataService {
           'i18n': 'menu.business',
           'icon': 'anticon-dashboard',
           'children': [{
-              'key': 'standard',
-              'text': '标准管理',
-              'link': '/business/standard',
-              'i18n': 'menu.standard',
-            }, {
-              'key': 'project',
-              'text': '项目管理',
-              'link': '/business/project',
-              'i18n': 'menu.project',
-            }, {
-              'key': 'project',
-              'text': '板厚截面位置',
-              'link': '/business/thickness-section-position',
-              'i18n': 'menu.thicknessSectionPosition',
-            }
+            'key': 'standard',
+            'text': '标准管理',
+            'link': '/business/standard',
+            'i18n': 'menu.standard',
+          }, {
+            'key': 'project',
+            'text': '项目管理',
+            'link': '/business/project',
+            'i18n': 'menu.project',
+          }, {
+            'key': 'project',
+            'text': '板厚截面位置',
+            'link': '/business/thickness-section-position',
+            'i18n': 'menu.thicknessSectionPosition',
+          },
           ],
         },
         {
@@ -63,7 +69,7 @@ export class MenuDataService {
           'i18n': 'menu.record',
           'icon': 'anticon-dashboard',
           'children': [
-          {
+            {
               'key': 'deviceRecord',
               'text': '样机报告',
               'link': '/business/device-record',
@@ -145,7 +151,7 @@ export class MenuDataService {
   constructor(public aclService: ACLService, private menuSrv: MenuService) {
     this.allMenu.forEach(v => {
       v.children.forEach(k => {
-         this.keyToAcl(k);
+        this.keyToAcl(k);
       });
     });
   }
@@ -168,6 +174,8 @@ export class MenuDataService {
       this.permissionsLoginUserMap.set(v['code'], v);
       roles.push(v['code']);
     });
+    roles.push('security');
+    roles.push('center');
     this.aclService.setRole(roles);
     this.menuSrv.resume();
     this.aclService.setFull(false);

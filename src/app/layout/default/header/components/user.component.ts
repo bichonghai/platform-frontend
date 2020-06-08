@@ -17,7 +17,7 @@ import { SettingsService } from '@delon/theme';
     </div>
     <nz-dropdown-menu #userMenu="nzDropdownMenu">
       <div nz-menu class="width-sm">
-        <div nz-menu-item routerLink="/pro/account/center">
+        <div nz-menu-item routerLink="/security/user/center">
           <i nz-icon nzType="user" class="mr-sm"></i>
           {{ 'menu.account.center' | translate }}
         </div>
