@@ -5,7 +5,7 @@
 export const environment = {
   SERVER_URL: `./`,
   production: false,
-  useHash: true,
+  useHash: false,
   hmr: false,
   platformUrl: 'http://180.168.96.174:38888/platform',
 };

@@ -16,11 +16,30 @@ export class UserService extends CommonService {
   }
 
   detailPropertys = new Set(['userName', 'userFullName', 'password', 'sex', 'email', 'telephone', 'mobilephone', 'address']);
-  listPropertys = new Set(['userName', 'userFullName', 'password', 'sex', 'email', 'telephone', 'mobilephone', 'address']);
+  listPropertys = new Set(['userName', 'userFullName', 'sex', 'email', 'telephone', 'mobilephone', 'address']);
 
   public login(name: string, password: string): Observable<any> {
     const params = { 'name': name, 'password': password };
     return this.httpClient.get(this.servicePathService.loginUrl, { 'params': params }).pipe(
+      debounceTime(500),
+      catchError((errMsg: Response | any) => {
+        return throwError(errMsg);
+      }),
+    );
+  }
+
+  public dingdingLoginUrl(): Observable<any> {
+    return this.httpClient.get(this.servicePathService.dingdingLoginUrl).pipe(
+      debounceTime(500),
+      catchError((errMsg: Response | any) => {
+        return throwError(errMsg);
+      }),
+    );
+  }
+
+  public dingdingLogin(code, state): Observable<any> {
+    const params = { 'code': code, 'state': state };
+    return this.httpClient.get(this.servicePathService.dingdingLogin, { 'params': params }).pipe(
       debounceTime(500),
       catchError((errMsg: Response | any) => {
         return throwError(errMsg);

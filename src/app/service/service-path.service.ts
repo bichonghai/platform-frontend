@@ -6,6 +6,8 @@ import { environment } from '@env/environment';
 })
 export class ServicePathService {
   public loginUrl = environment.platformUrl + '/index/login';
+  public dingdingLoginUrl = environment.platformUrl + '/index/dingdingLoginUrl';
+  public dingdingLogin = environment.platformUrl + '/index/dingdingLogin';
   public tokenLoginUrl = environment.platformUrl + '/index/tokenLogin';
   public user = environment.platformUrl + '/user';
   public role = environment.platformUrl + '/role';

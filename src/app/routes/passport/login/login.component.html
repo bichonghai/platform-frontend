@@ -5,14 +5,14 @@
       <nz-form-item>
         <nz-form-control [nzErrorTip]="'请输入账号!'">
           <nz-input-group nzSize="large" nzPrefixIcon="user">
-            <input nz-input formControlName="userName" placeholder="请输入账号" />
+            <input nz-input formControlName="userName" placeholder="请输入账号"/>
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
         <nz-form-control nzErrorTip="请输入密码">
           <nz-input-group nzSize="large" nzPrefixIcon="lock">
-            <input nz-input type="password" formControlName="password" placeholder="请输入密码" />
+            <input nz-input type="password" formControlName="password" placeholder="请输入密码"/>
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
@@ -27,9 +27,15 @@
         </button>
       </nz-form-item>
     </nz-tab>
-  <!--  <nz-tab [nzTitle]="'app.login.weixin' | translate">
-
-    </nz-tab>-->
+    <nz-tab [nzTitle]="'app.login.dingtalk' | translate">
+      <nz-alert *ngIf="error" [nzType]="'error'" [nzMessage]="error" [nzShowIcon]="true" class="mb-lg"></nz-alert>
+      <div style="text-align: center;height: 150px;">
+        <img style="width: 122px;height: 122px" class="logo" src="./assets/login-dingding.png">
+      </div>
+      <div  nz-col nzSpan="24">
+        <button nz-button nzType="primary" (click)="dingdingLogin()" style="width: 100%">{{'app.login.dingtalk' | translate}}</button>
+      </div>
+    </nz-tab>
   </nz-tabset>
 
 </form>

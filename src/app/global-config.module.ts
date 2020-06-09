@@ -16,8 +16,11 @@ const alainConfig: AlainConfig = {
     license: `A59B099A586B3851E0F0D7FDBF37B603`,
     licenseA: `C94CEE276DB2187AE6B65D56B3FC2848`,
   },
-  acl:{guard_url: `/exception/403`},
-  auth: { login_url: '/passport/login',ignores:[/\/getUser/,/\/login/, /assets\//, /passport\//, /.*\/platform\/index\/tokenLogin/] },
+  acl: { guard_url: `/exception/403` },
+  auth: {
+    login_url: '/passport/login',
+    ignores: [/\/getUser/, /\/login/, /assets\//, /passport\//, /passport\/ding-talk/, /.*\/platform\/index\/tokenLogin/],
+  },
 };
 
 const alainModules = [AlainThemeModule.forRoot(), DelonACLModule.forRoot(), DelonMockModule.forRoot()];
@@ -26,6 +29,7 @@ const alainProvides = [{ provide: ALAIN_CONFIG, useValue: alainConfig }];
 // mock
 import { environment } from '@env/environment';
 import * as MOCKDATA from '../../_mock';
+
 if (!environment.production) {
   alainConfig.mock = { data: MOCKDATA };
 }

@@ -38,6 +38,7 @@
       "kebab-case"
     ],
     "eofline": true,
+    "prefer-for-of": false,
     "import-blacklist": [
       false,
       "rxjs/Rx",

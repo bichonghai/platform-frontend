@@ -15,6 +15,7 @@ import { CallbackComponent } from './callback/callback.component';
 import { UserLockComponent } from './passport/lock/lock.component';
 import { ACLGuard } from '@delon/acl';
 import { UserCenterComponent } from './security/user/user-center/user-center.component';
+import { DingTalkComponent } from './passport/ding-talk/ding-talk.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,7 @@ const routes: Routes = [
     component: LayoutPassportComponent,
     children: [
       { path: 'login', component: UserLoginComponent, data: { title: '登录' } },
+      { path: 'ding-talk', component: DingTalkComponent, data: { title: '钉钉登录' } },
       { path: 'center', component: UserCenterComponent, data: { title: '用户中心' } },
       { path: 'register-result', component: UserRegisterResultComponent, data: { title: '注册结果' } },
       { path: 'lock', component: UserLockComponent, data: { title: '锁屏' } },

@@ -1,5 +1,5 @@
 import { Injectable, Injector, Inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { zip } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -28,6 +28,7 @@ export class StartupService {
     private translate: TranslateService,
     @Inject(ALAIN_I18N_TOKEN) private i18n: I18NService,
     private settingService: SettingsService,
+    private route: ActivatedRoute,
     private aclService: ACLService,
     private titleService: TitleService,
     @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService,
@@ -51,14 +52,62 @@ export class StartupService {
       });
   }
 
+  getUrlParams(params) {
+    const urlObj = {};
+    if (!window.location.search) {
+      return false;
+    }
+    const urlParams = window.location.search.substring(1);
+    const urlArr = urlParams.split('&');
+    for (let i = 0; i < urlArr.length; i++) {
+      const urlArrItem = urlArr[i].split('=');
+      urlObj[urlArrItem[0]] = urlArrItem[1];
+    }
+    // 判断是否有参数
+    if (arguments.length >= 1) {
+      return urlObj[params];
+    }
+    return urlObj;
+  }
+
+  dingdingLogin(resolve: any, reject: any) {
+    const app: any = {
+      name: `测试报告填报系统`,
+      description: `测试报告填报系统`,
+    };
+
+    const code = this.getUrlParams('code');
+    const state = this.getUrlParams('state');
+    this.userService.dingdingLogin(code, state).subscribe(res => {
+      this.userService.responseWrapperProcess(res, (successData) => {
+        const user = successData;
+        user['avatar'] = './assets/tmp/img/avatar.jpg';
+        this.menuDataService.permissionsLoginUser = deepCopy(user['permissions']);
+        user['permissions'] = [];
+        this.tokenService.set(user);
+        this.setProcess(app, user, resolve, reject);
+      }, (failureData) => {
+        this.tokenService.clear();
+        this.router.navigateByUrl(this.tokenService.login_url);
+        resolve({});
+      });
+    });
+
+  }
+
   private viaMock(resolve: any, reject: any) {
+    const location: string = window.location.toString();
+    if (location.indexOf('passport/ding-talk') !== -1) {
+      this.dingdingLogin(resolve, reject);
+      return;
+    }
     const app: any = {
       name: `测试报告填报系统`,
       description: `测试报告填报系统`,
     };
     let user = this.tokenService.get();
     user['avatar'] = './assets/tmp/img/avatar.jpg';
-    if (!this.menuDataService.permissionsLoginUser || this.menuDataService.permissionsLoginUser.length == 0) {//通过token换取权限
+    if (!this.menuDataService.permissionsLoginUser || this.menuDataService.permissionsLoginUser.length === 0) { // 通过token换取权限
       this.userService.tokenLogin(user['token']).subscribe(res => {
         this.userService.responseWrapperProcess(res, (successData) => {
           user = successData;

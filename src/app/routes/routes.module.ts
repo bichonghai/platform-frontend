@@ -11,6 +11,7 @@ import { UserRegisterResultComponent } from './passport/register-result/register
 // single pages
 import { CallbackComponent } from './callback/callback.component';
 import { UserLockComponent } from './passport/lock/lock.component';
+import { DingTalkComponent } from './passport/ding-talk/ding-talk.component';
 
 const COMPONENTS = [
   DashboardComponent,
@@ -28,7 +29,8 @@ const COMPONENTS_NOROUNT = [];
   imports: [ SharedModule, RouteRoutingModule ],
   declarations: [
     ...COMPONENTS,
-    ...COMPONENTS_NOROUNT
+    ...COMPONENTS_NOROUNT,
+    DingTalkComponent
   ],
 })
 export class RoutesModule {}
