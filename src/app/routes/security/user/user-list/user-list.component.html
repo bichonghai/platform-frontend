@@ -5,6 +5,7 @@
     </sf>
   </div>
   <button nz-button class="ml-sm" (click)="add()" [acl]="'user:add'">{{'menu.operator.add'|translate}}</button>
+  <button nz-button class="ml-sm" (click)="synDingTalk()" [acl]="'user:synDingTalk'">{{'user.synDingTalk'|translate}}</button>
   <button nz-button class="ml-sm" (click)="remove()" [acl]="'user:remove'">{{'menu.operator.delete'|translate}}</button>
   <button nz-button (click)="st.export()">{{'menu.operator.export'|translate}}</button>
   <div class="my-md">

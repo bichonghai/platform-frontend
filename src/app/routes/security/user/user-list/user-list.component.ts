@@ -6,7 +6,6 @@ import { ListComponent } from '../../../common/component/list-component';
 import { NzModalService } from 'ng-zorro-antd';
 import { ALAIN_I18N_TOKEN } from '@delon/theme';
 import { I18NService } from '@core';
-import { SFComponent } from '@delon/form';
 import { zip } from 'rxjs';
 import { RoleService } from '../../../../service/role/role.service';
 
@@ -78,7 +77,27 @@ export class UserListComponent extends ListComponent implements OnInit {
       this.isVisible = true;
     });
   }
-
+  synDingTalk(){
+    this.userService.synDingTalk().subscribe(value => {
+      this.commonService.responseWrapperProcess(value, (successData) => {
+        this.st.clearCheck();
+        this.st.reload();
+        this.modal.success({
+          nzTitle: '',
+          nzContent: '同步成功',
+          nzMask: false,
+        });
+      }, (failureData) => {
+        this.st.clearCheck();
+        this.st.reload();
+        this.modal.error({
+          nzTitle: '',
+          nzContent: '同步失败',
+          nzMask: false,
+        });
+      });
+    });
+  }
   handleCancel() {
     this.isVisible = false;
   }

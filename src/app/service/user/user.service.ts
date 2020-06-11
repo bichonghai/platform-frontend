@@ -64,7 +64,14 @@ export class UserService extends CommonService {
       }),
     );
   }
-
+  public synDingTalk(): Observable<any> {
+    return this.httpClient.get(this.url + '/synDingTalk').pipe(
+      debounceTime(500),
+      catchError((errMsg: Response | any) => {
+        return throwError(errMsg);
+      }),
+    );
+  }
   public userRoleUuidsToUser(uuid: string, uuidsRole: string[]): Observable<any> {
     return this.httpClient.get(this.url + '/userRoleUuidsToUser', {
       params: {

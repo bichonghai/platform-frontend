@@ -15,6 +15,7 @@ import { ICONS_AUTO } from '../../../style-icons-auto';
 import { MenuDataService } from './menu-data.service';
 import { UserService } from '../../service/user/user.service';
 import { deepCopy } from '@delon/util';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 /**
  * Used for application startup
@@ -36,6 +37,7 @@ export class StartupService {
     private menuDataService: MenuDataService,
     private userService: UserService,
     public router: Router,
+    public msg: NzMessageService,
     private injector: Injector,
   ) {
     iconSrv.addIcon(...ICONS_AUTO, ...ICONS);
@@ -87,6 +89,7 @@ export class StartupService {
         this.tokenService.set(user);
         this.setProcess(app, user, resolve, reject);
       }, (failureData) => {
+        this.msg.warning('只有钉钉企业内用户才可认证，请联系管理员导入!');
         this.tokenService.clear();
         this.router.navigateByUrl(this.tokenService.login_url);
         resolve({});
